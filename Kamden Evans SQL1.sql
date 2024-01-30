@@ -48,7 +48,7 @@ WHERE
 ORDER BY
     city ASC
 ;
---UNION shouldn't be needed; figure out how to combine the columns
+-- Figure out how in the world JOIN is supposed to be used here
 
 -- 5
 SELECT
