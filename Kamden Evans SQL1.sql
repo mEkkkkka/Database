@@ -40,17 +40,9 @@ ORDER BY
 
 -- 4
 SELECT
-    firstName
+   firstName, lastName, city, phone
 FROM
     students
-UNION
-SELECT
-    lastName AS full_name
-FROM
-    students
-SELECT
-    city AS city,
-    phone AS phone
 WHERE
     firstName LIKE 'Kassandra%'
 ORDER BY
