@@ -49,7 +49,7 @@ FROM
 
 -- 7
 SELECT
-    capacity
+    locationID
 FROM
     sections
 ;
