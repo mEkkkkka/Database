@@ -52,11 +52,13 @@ ORDER BY
 
 -- 5
 SELECT
-    empNo
+    ordNo AS order_number, ordName AS name, ordState AS state
 FROM
     orderTbl
+WHERE
+    empNo LIKE 'E8544399'
 ;
--- TBD
+-- This one is done
 
 -- 6
 SELECT
