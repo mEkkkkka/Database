@@ -56,7 +56,7 @@ WHERE
 ORDER BY
     city ASC
 ;
---union is in the wrong spot; figure out where that should go
+--UNION shouldn't be needed; figure out how to combine the columns
 
 -- 5
 SELECT
