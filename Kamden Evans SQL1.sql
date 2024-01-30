@@ -40,7 +40,7 @@ ORDER BY
 
 -- 4
 SELECT
-   firstName, lastName, city, phone
+   firstName JOIN lastName AS full_name, city, phone
 FROM
     students
 WHERE
