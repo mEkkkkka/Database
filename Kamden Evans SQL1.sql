@@ -5,9 +5,11 @@
 
 -- 1
 SELECT
-    prodPrice
+    prodName, prodMtg,prodPrice
 FROM
     product
+ORDER BY
+    prodMtg ASC
 ;
 
 -- 2
