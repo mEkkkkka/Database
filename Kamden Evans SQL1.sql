@@ -5,7 +5,9 @@
 
 -- 1
 SELECT
-    prodName, prodMtg,prodPrice
+    prodName,
+    prodMtg,
+    prodPrice
 FROM
     product
 ORDER BY
@@ -13,14 +15,17 @@ ORDER BY
 ;
 
 -- 2
-SELECT 
+SELECT DISTINCT
     ordCity
 FROM 
     orderTbl
+ORDER BY
+    ordCity DESC
 ;
 
 -- 3
 SELECT
+    custFirstName,
     custLastName
 FROM
     customer
