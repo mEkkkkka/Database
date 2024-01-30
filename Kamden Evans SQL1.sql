@@ -40,11 +40,17 @@ ORDER BY
 
 -- 4
 SELECT
-    firstName UNION lastName AS full_name,
-    city,
-    phone
+    firstName
 FROM
     students
+UNION
+SELECT
+    lastName AS full_name
+FROM
+    students
+SELECT
+    city AS city,
+    phone AS phone
 WHERE
     firstName LIKE 'Kassandra%'
 ORDER BY
