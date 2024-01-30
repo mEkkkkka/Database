@@ -56,6 +56,7 @@ SELECT
 FROM
     orderTbl
 ;
+-- TBD
 
 -- 6
 SELECT
@@ -63,6 +64,7 @@ SELECT
 FROM
     buildings
 ;
+-- TBD
 
 -- 7
 SELECT
@@ -70,6 +72,7 @@ SELECT
 FROM
     sections
 ;
+-- TBD
 
 -- 8
 SELECT
@@ -77,6 +80,7 @@ SELECT
 FROM
     professors
 ;
+--TBD
 
 -- 9
 SELECT
@@ -84,6 +88,7 @@ SELECT
 FROM
     assignmentScore
 ;
+-- TBD
 
 -- 10
 SELECT
@@ -91,3 +96,4 @@ SELECT
 FROM
     orderTbl
 ;
+--TBD
