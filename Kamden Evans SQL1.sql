@@ -5,38 +5,52 @@
 
 -- 1
 SELECT
-    prodName,
-    prodMtg,
-    prodPrice
+    prodName AS product,
+    prodMfg AS manufacturer,
+    prodPrice AS price
 FROM
     product
 ORDER BY
-    prodMtg ASC
+    prodMfg ASC
 ;
+-- This one is done
 
 -- 2
 SELECT DISTINCT
-    ordCity
+    ordCity AS city
 FROM 
     orderTbl
 ORDER BY
     ordCity DESC
 ;
+-- This one is done
 
 -- 3
 SELECT
-    custFirstName,
-    custLastName
+    custFirstName AS first_name,
+    custLastName AS last_name
 FROM
     customer
+WHERE
+    custLastName LIKE 'W%'
+ORDER BY
+    custLastName ASC
 ;
+-- This one is done
 
 -- 4
 SELECT
-    firstName
+    firstName UNION lastName AS full_name,
+    city,
+    phone
 FROM
     students
+WHERE
+    firstName LIKE 'Kassandra%'
+ORDER BY
+    city ASC
 ;
+--union is in the wrong spot; figure out where that should go
 
 -- 5
 SELECT
