@@ -62,11 +62,13 @@ WHERE
 
 -- 6
 SELECT
-    buildingName
+    buildingName AS building_name
 FROM
     buildings
+WHERE
+    buildingName LIKE '_i%'
 ;
--- TBD
+-- This one is done
 
 -- 7
 SELECT
