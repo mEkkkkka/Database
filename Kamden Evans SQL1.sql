@@ -48,7 +48,7 @@ WHERE
 ORDER BY
     city ASC
 ;
--- Figure out how in the world JOIN is supposed to be used here
+-- Figure out how in the world you are supposed to combine two columns into one and rename the new column
 
 -- 5
 SELECT
