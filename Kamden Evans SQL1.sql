@@ -40,15 +40,15 @@ ORDER BY
 
 -- 4
 SELECT
-   firstName JOIN lastName AS full_name, city, phone
+   firstName || ' ' || lastName AS full_name, city AS city, phone AS phone
 FROM
     students
 WHERE
-    firstName LIKE 'Kassandra%'
+    firstName LIKE '%Kassandra%'
 ORDER BY
     city ASC
 ;
--- Figure out how in the world you are supposed to combine two columns into one and rename the new column
+-- This one is done
 
 -- 5
 SELECT
