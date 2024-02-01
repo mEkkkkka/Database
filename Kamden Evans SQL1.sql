@@ -72,19 +72,27 @@ WHERE
 
 -- 7
 SELECT
-    locationID
+    courseID AS course, sectionID AS section, locationID AS location
 FROM
     sections
+WHERE
+    capacity = 20, capacity = 40, locationID >= 100, locationID <= 1000
+ORDER BY
+    locationID ASC, sectionID DESC
 ;
--- TBD
+-- Check this one
 
 -- 8
 SELECT
-    professorId
+    professorID AS id, lastName AS last_name, phone AS phone
 FROM
     professors
+WHERE
+    city LIKE '%Bend%', city LIKE '%Lake Oswego%'
+ORDER BY
+    hireDate ASC
 ;
---TBD
+-- Check this one
 
 -- 9
 SELECT
