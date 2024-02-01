@@ -99,10 +99,12 @@ SELECT
     studentID AS student, score AS score
 FROM
     assignmentScore
+WHERE
+    assignmentTypeID = 'MT' AND sectionID = 20646
 ORDER BY
     studentID ASC, score ASC
 ;
--- Check this one
+-- This one is done
 
 -- 10
 SELECT
