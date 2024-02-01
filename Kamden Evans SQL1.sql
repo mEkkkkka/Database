@@ -118,6 +118,8 @@ SELECT
 FROM
     orderTbl
 WHERE
-    empNo 
+    empNo IS NULL
+ORDER BY
+    city ASC
 ;
--- Finish the WHERE area
+-- This one is done
