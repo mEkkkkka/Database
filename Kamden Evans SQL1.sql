@@ -76,7 +76,7 @@ SELECT
 FROM
     sections
 WHERE
-    capacity = 20, capacity = 40, locationID >= 100, locationID <= 1000
+    capacity = 20, capacity = 40, locationID BETWEEN 100 AND 1000
 ORDER BY
     locationID ASC, sectionID DESC
 ;
@@ -92,20 +92,24 @@ WHERE
 ORDER BY
     hireDate ASC
 ;
--- Check this one
+-- Check this one - also needs the IN clause
 
 -- 9
 SELECT
-    assignmentNumber
+    studentID AS student, score AS score
 FROM
     assignmentScore
+ORDER BY
+    studentID ASC, score ASC
 ;
--- TBD
+-- Check this one
 
 -- 10
 SELECT
-    ordCity
+    ordName AS name, ordCity AS city
 FROM
     orderTbl
+WHERE
+    empNo 
 ;
---TBD
+-- Finish the WHERE area
