@@ -76,11 +76,11 @@ SELECT
 FROM
     sections
 WHERE
-    capacity = 20, capacity = 40, locationID BETWEEN 100 AND 1000
+    capacity = 20 AND locationID BETWEEN 100 AND 1000 OR capacity = 40 AND locationID BETWEEN 100 AND 1000
 ORDER BY
     locationID ASC, sectionID DESC
 ;
--- Check this one
+-- This one is done
 
 -- 8
 SELECT
@@ -88,11 +88,11 @@ SELECT
 FROM
     professors
 WHERE
-    city LIKE '%Bend%', city LIKE '%Lake Oswego%'
+    city IN ('%Bend%', '%Lake Oswego%')
 ORDER BY
     hireDate ASC
 ;
--- Check this one - also needs the IN clause
+-- Check this one
 
 -- 9
 SELECT
