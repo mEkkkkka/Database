@@ -88,11 +88,11 @@ SELECT
 FROM
     professors
 WHERE
-    city IN ('%Bend%', '%Lake Oswego%')
+    city IN ('Bend', 'Lake Oswego')
 ORDER BY
     hireDate ASC
 ;
--- Check this one
+-- This one is done
 
 -- 9
 SELECT
