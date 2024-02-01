@@ -76,7 +76,13 @@ SELECT
 FROM
     sections
 WHERE
-    capacity = 20 AND locationID BETWEEN 100 AND 1000 OR capacity = 40 AND locationID BETWEEN 100 AND 1000
+    (
+    capacity = 20
+    OR
+    capacity = 40
+    )
+    AND
+    locationID BETWEEN 100 AND 1000
 ORDER BY
     locationID ASC, sectionID DESC
 ;
