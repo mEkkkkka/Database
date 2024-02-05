@@ -55,8 +55,12 @@ SELECT DISTINCT
     zip as zip
 FROM
     students
+WHERE
+    city = 'Las Vegas'
+ORDER BY
+    zip ASC
 ;
--- TBD
+-- This one is done
 
 -- 6
 SELECT
