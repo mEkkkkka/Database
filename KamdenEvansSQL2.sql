@@ -80,11 +80,23 @@ ORDER BY
 
 -- 7
 SELECT
-    state AS state_name, state AS state, city AS city
+    CASE
+        WHEN state = 'NM' THEN 'New Mexico'
+        WHEN state = 'ND' THEN 'North Dakota'
+        WHEN state = 'UT' THEN 'Utah'
+        WHEN state = 'MT' THEN 'Montana'
+        WHEN state = 'SD' THEN 'South Dakota'
+        ELSE 'Who knows'
+    END AS state_name, 
+     state AS state, city AS city
 FROM
     professors
+WHERE
+    (SUBSTR(firstName, 1, 1) = 'P' OR SUBSTR(lastName, 1, 1) = 'L') AND (state = 'NM' OR state = 'ND' OR state = 'UT' OR state = 'MT' OR state = 'SD')
+ORDER BY
+    state ASC
 ;
--- TBD
+-- This one is done
 
 -- 8
 SELECT
