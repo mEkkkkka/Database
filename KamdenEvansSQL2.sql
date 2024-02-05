@@ -103,8 +103,12 @@ SELECT
     firstName || ' ' || lastName || ' ' || streetAddress || ' ' || city || ' ' || state || ' ' || zip AS student_address
 FROM
     students
+WHERE
+    state = 'UT' AND ROUND(zip, -2) >= 84500
+ORDER BY
+    firstName ASC
 ;
--- TBD
+-- This one is done
 
 -- 9
 SELECT
