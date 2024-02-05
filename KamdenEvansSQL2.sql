@@ -9,14 +9,18 @@ FROM
     students
 WHERE
     city LIKE '%Medford%'
+ORDER BY
+    full_name ASC
 ;
--- TBD
+-- This one is done
 
 -- 2
 SELECT
     firstName || ' ' || lastName AS full_name, phone AS phone, tuitionBalance AS balance
 FROM
     students
+WHERE
+    phone LIKE '701%'
 ;
 -- TBD
 
