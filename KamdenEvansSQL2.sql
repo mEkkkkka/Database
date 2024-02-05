@@ -43,6 +43,10 @@ SELECT
     studentID AS id, tuitionBalance AS balance
 FROM
     students
+WHERE
+    MOD(tuitionBalance, 2) = 1 AND tuitionBalance > 9000 AND state = 'OR' 
+ORDER BY
+    tuitionBalance ASC
 ;
 -- TBD
 
