@@ -28,9 +28,13 @@ ORDER BY
 
 -- 3
 SELECT
-    UPPER(firstName) || ', ' || UPPER(SUBSTR(lastName, 1)) || '.' AS student_name, LPAD(phone, 17, '*') AS phone, streetAddress AS street
+    UPPER(lastName) || ', ' || UPPER(SUBSTR(firstName, 1, 1)) || '.' AS student_name, LPAD(phone, 17, '*') AS phone, streetAddress AS street
 FROM
     students
+WHERE
+    phone LIKE '623%'
+ORDER BY
+    student_name ASC
 ;
 -- TBD
 
