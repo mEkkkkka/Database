@@ -21,8 +21,10 @@ FROM
     students
 WHERE
     phone LIKE '701%'
+ORDER BY
+    full_name ASC
 ;
--- TBD
+-- This one is done
 
 -- 3
 SELECT
