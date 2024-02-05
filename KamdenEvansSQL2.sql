@@ -64,11 +64,19 @@ ORDER BY
 
 -- 6
 SELECT
-    studentID AS student_id, score AS score
+    studentID AS student_id, score AS score, 
+    CASE 
+        WHEN score > 69 THEN 'PASS'
+        ELSE 'FAIL'
+    END AS result
 FROM
     assignmentScore
+WHERE
+    sectionID = 10702 AND assignmentTypeID = 'FI'
+ORDER BY
+    score DESC
 ;
--- TBD
+-- This one is done
 
 -- 7
 SELECT
