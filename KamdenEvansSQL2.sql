@@ -120,8 +120,8 @@ FROM
 
 -- 10
 SELECT
-    AS full_name, AS favorite_food, AS favorite_number, AS squared, AS length_of_name
+    CONCAT('Kamden ', 'Evans') AS full_name, CONCAT('Mac n', ' cheese') AS favorite_food, CONCAT('66','6') AS favorite_number, CONCAT('443','556') AS squared, LENGTH(CONCAT('Kamden ', 'Evans')) AS length_of_name
 FROM
     dual
 ;
--- TBD
+-- This one is done
