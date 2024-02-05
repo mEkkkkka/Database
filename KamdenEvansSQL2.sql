@@ -69,5 +69,5 @@ FROM
 SELECT
     AS full_name, AS favorite_food, AS favorite_number, AS squared, AS length_of_name
 FROM
-    --A new table
+    dual
 -- TBD
