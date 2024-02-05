@@ -18,7 +18,7 @@ FROM
 
 -- 3
 SELECT
-    firstName AS student_name, '*******' || phone AS phone, streetAddress AS street
+    UPPER(firstName) || ', ' || UPPER(SUBSTR(lastName, 1)) || '.' AS student_name, LPAD(phone, 17, '*') AS phone, streetAddress AS street
 FROM
     students
 -- TBD
