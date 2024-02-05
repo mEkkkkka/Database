@@ -36,7 +36,7 @@ WHERE
 ORDER BY
     student_name ASC
 ;
--- TBD
+-- This one is done
 
 -- 4
 SELECT
@@ -48,7 +48,7 @@ WHERE
 ORDER BY
     tuitionBalance ASC
 ;
--- TBD
+-- This one is done
 
 -- 5
 SELECT DISTINCT
