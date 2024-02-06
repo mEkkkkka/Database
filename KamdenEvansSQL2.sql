@@ -115,6 +115,10 @@ SELECT
     studentID AS student_id, score AS score, sectionID AS section_id
 FROM
     assignmentScore
+WHERE
+    (sectionID >= 12000 AND sectionID <= 12100)
+ORDER BY
+    sectionID DESC
 ;
 -- DO THIS!!!!!!!
 
