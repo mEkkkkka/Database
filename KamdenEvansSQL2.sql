@@ -116,7 +116,7 @@ SELECT
 FROM
     assignmentScore
 WHERE
-    (sectionID >= 12000 AND sectionID <= 12100)
+    (sectionID >= 12000 AND sectionID <= 12100) AND assignmentNumber = 2
 ORDER BY
     sectionID DESC
 ;
@@ -124,7 +124,7 @@ ORDER BY
 
 -- 10
 SELECT
-    CONCAT('Kamden ', 'Evans') AS full_name, CONCAT('Mac n', ' cheese') AS favorite_food, CONCAT('66','6') AS favorite_number, CONCAT('443','556') AS squared, LENGTH(CONCAT('Kamden ', 'Evans')) AS length_of_name
+    'Kamden ' || 'Evans' AS full_name, 'Mac n' || ' cheese' AS favorite_food, '66' || '6' AS favorite_number, '443' || '556' AS squared, LENGTH('Kamden ' || 'Evans') AS length_of_name
 FROM
     dual
 ;
