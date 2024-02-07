@@ -120,7 +120,7 @@ WHERE
 ORDER BY
     sectionID DESC
 ;
--- DO THIS!!!!!!!
+-- This one is done
 
 -- 10
 SELECT
