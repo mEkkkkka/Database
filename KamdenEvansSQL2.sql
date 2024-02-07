@@ -116,7 +116,7 @@ SELECT
 FROM
     assignmentScore
 WHERE
-    (sectionID >= 12000 AND sectionID <= 12100) AND assignmentNumber = 2
+    (sectionID >= 12000 AND sectionID <= 12100) AND assignmentNumber = 2 AND assignmentTypeID = 'QZ'
 ORDER BY
     sectionID DESC
 ;
