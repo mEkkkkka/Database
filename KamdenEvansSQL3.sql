@@ -88,7 +88,6 @@ SELECT
         WHEN MOD(EXTRACT(YEAR FROM SYSDATE), 12) = 2 THEN 'Dog'
         ELSE 'Pig'
     END AS chinese_zodiac
-
 FROM
     dual
 ;
