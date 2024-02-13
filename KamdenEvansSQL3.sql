@@ -4,7 +4,9 @@
 
 -- 1
 SELECT
-    firstName || ' ' || lastName AS student_name, phone AS phone, TO_CHAR(admissionDate, YYYY) AS admit_year
+    firstName || ' ' || lastName AS student_name,
+    phone AS phone,
+    TO_CHAR(admissionDate, YYYY) AS admit_year
 FROM
     students
 WHERE
@@ -16,11 +18,17 @@ ORDER BY
 
 -- 2
 SELECT
-    courseID AS course_id
+    courseID AS course_id,
+    sectionID AS section_id,
+    TO_CHAR(sectionStartDate, HH) || ':' || TO_CHAR(sectionStartDate, MI) || ' ' || TO_CHAR(sectionStartDate, DDD) AS start_date_time
 FROM
     sections
+WHERE
+    locationID = 8396
+ORDER BY
+    EXTRACT(sectionStartDate)
 ;
--- TBD
+-- Check this one; almost definitely is wrong in at least one way
 
 -- 3
 SELECT
