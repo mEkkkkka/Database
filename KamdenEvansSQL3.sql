@@ -4,11 +4,15 @@
 
 -- 1
 SELECT
-    firstName || ' ' || lastName AS student_name, phone AS phone, admissionDate AS admit_year
+    firstName || ' ' || lastName AS student_name, phone AS phone, TO_CHAR(admissionDate, YYYY) AS admit_year
 FROM
     students
+WHERE
+    TO_CHAR(admissionDate, MM) = '06' || TO_CHAR(admissionDate, DD) = '13'
+ORDER BY
+    TO_CHAR(admissionDate, YYYY) ASC, lastName ASC
 ;
--- TBD
+-- Check this one
 
 -- 2
 SELECT
