@@ -20,15 +20,17 @@ ORDER BY
 SELECT
     courseID AS course_id,
     sectionID AS section_id,
-    TO_CHAR(sectionStartDate, HH) || ':' || TO_CHAR(sectionStartDate, MI) || ' ' || TO_CHAR(sectionStartDate, DDD) AS start_date_time
+    TO_CHAR(sectionStartDate, 'HH:MI DD/MM/YYYY')  AS start_date_time
 FROM
     sections
 WHERE
     locationID = 8396
 ORDER BY
-    EXTRACT(sectionStartDate)
+    EXTRACT(YEAR FROM sectionStartDate) DESC,
+    EXTRACT(MONTH FROM sectionStartDate) DESC,
+    EXTRACT(DAY from sectionStartDate) DESC
 ;
--- Check this one; almost definitely is wrong in at least one way
+-- This one is done
 
 -- 3
 SELECT
