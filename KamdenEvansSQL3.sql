@@ -55,11 +55,19 @@ ORDER BY
 
 -- 4
 SELECT
+    studentID as student,
+    sectionID as section,
     finalClassGrade AS grade
 FROM
     registration
+WHERE
+    TO_CHAR(registrationDate, 'MON YYYY') = 'SEP 2020'
+    AND finalClassGrade NOT LIKE '%W%'
+ORDER BY
+    grade ASC,
+    section ASC
 ;
--- TBD; use format mask
+-- This one is done
 
 -- 5
 SELECT
