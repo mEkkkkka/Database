@@ -34,11 +34,24 @@ ORDER BY
 
 -- 3
 SELECT
-    courseID AS course_id
+    courseID AS course_id,
+    sectionID AS section_id,
+    TO_CHAR(sectionStartDate, 'DD-Mon-RR') AS section_st,
+    professorID AS professor_id,
+    capacity AS capacity
 FROM
     sections
+WHERE
+    MOD(EXTRACT(DAY FROM sectionStartDate), 2) = 1
+    AND TO_CHAR(sectionStartDate, 'MON') = 'AUG'
+    AND EXTRACT(YEAR FROM sectionStartDate) = 2020
+    AND MOD(courseID, 5) = 0
+    AND MOD(professorID, 2) = 0
+ORDER BY
+    course_id DESC,
+    section_id DESC
 ;
--- TBD
+-- This one is done
 
 -- 4
 SELECT
