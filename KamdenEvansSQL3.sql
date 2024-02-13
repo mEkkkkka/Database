@@ -28,7 +28,8 @@ WHERE
 ORDER BY
     EXTRACT(YEAR FROM sectionStartDate) DESC,
     EXTRACT(MONTH FROM sectionStartDate) DESC,
-    EXTRACT(DAY from sectionStartDate) DESC
+    EXTRACT(DAY FROM sectionStartDate) DESC,
+    TO_CHAR(sectionStartDate, 'HH') DESC
 ;
 -- This one is done
 
@@ -71,7 +72,23 @@ ORDER BY
 
 -- 5
 SELECT
-    'calculations will go ' || 'here' AS next_friday
+    NEXT_DAY(SYSDATE, 'FRIDAY') || ' is the next Friday' AS next_friday,
+    TO_CHAR(TO_DATE('September 15, 2024, 08:00', 'Month DD, YYYY, HH24:MI') + 182.625), 'DAY fmMonth fmDdspth, YYYY HH24:MI is my next half birthday') AS half_birthday,
+    CASE
+        WHEN MOD(EXTRACT(YEAR FROM SYSDATE), 12) = 4 THEN 'Rat'
+        WHEN MOD(EXTRACT(YEAR FROM SYSDATE), 12) = 5 THEN 'Ox'
+        WHEN MOD(EXTRACT(YEAR FROM SYSDATE), 12) = 6 THEN 'Tiger'
+        WHEN MOD(EXTRACT(YEAR FROM SYSDATE), 12) = 7 THEN 'Rabbit'
+        WHEN MOD(EXTRACT(YEAR FROM SYSDATE), 12) = 8 THEN 'Dragon'
+        WHEN MOD(EXTRACT(YEAR FROM SYSDATE), 12) = 9 THEN 'Snake'
+        WHEN MOD(EXTRACT(YEAR FROM SYSDATE), 12) = 10 THEN 'Horse'
+        WHEN MOD(EXTRACT(YEAR FROM SYSDATE), 12) = 11 THEN 'Sheep'
+        WHEN MOD(EXTRACT(YEAR FROM SYSDATE), 12) = 0 THEN 'Monkey'
+        WHEN MOD(EXTRACT(YEAR FROM SYSDATE), 12) = 1 THEN 'Rooster'
+        WHEN MOD(EXTRACT(YEAR FROM SYSDATE), 12) = 2 THEN 'Dog'
+        ELSE 'Pig'
+    END AS chinese_zodiac
+
 FROM
     dual
 ;
