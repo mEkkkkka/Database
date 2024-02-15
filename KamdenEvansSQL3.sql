@@ -138,7 +138,7 @@ WHERE
 ORDER BY
     employed DESC
 ;
--- TBD; dates will not match in all likelihood
+-- This one is done
 
 -- 9
 SELECT DISTINCT
