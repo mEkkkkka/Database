@@ -73,7 +73,7 @@ ORDER BY
 -- 5
 SELECT
     NEXT_DAY(SYSDATE, 'FRIDAY') || ' is the next Friday' AS next_friday,
-    TO_CHAR((TO_DATE('September 15, 2023, 08:00', 'Month DD, YYYY, HH24:MI') + 182.625), 'DAY fmMonth fmDdspth, YYYY HH24:MI') ||  ' is my next half birthday' AS half_birthday,
+    TO_CHAR((TO_DATE('September 15, 2023, 08:00', 'Month DD, YYYY, HH24:MI') + 182.625), 'fmDay Month fmDdspth, YYYY HH24:MI') ||  ' is my next half birthday' AS half_birthday,
     'This is a year of the ' || CASE
         WHEN MOD(EXTRACT(YEAR FROM SYSDATE), 12) = 4 THEN 'Rat'
         WHEN MOD(EXTRACT(YEAR FROM SYSDATE), 12) = 5 THEN 'Ox'
@@ -91,7 +91,7 @@ SELECT
 FROM
     dual
 ;
--- TBD; next friday, half birthday, chinese zodiac year
+-- This one is done
 
 -- 6
 SELECT
