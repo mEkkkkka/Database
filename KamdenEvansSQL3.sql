@@ -142,11 +142,16 @@ ORDER BY
 
 -- 9
 SELECT DISTINCT
-    sectionStartDate AS time
+    CASE
+        WHEN TO_CHAR(sectionStartDate, 'HH24') < 12 THEN TO_CHAR(sectionStartDate, 'HH24:MI') || ' AM'
+        ELSE TO_CHAR(sectionStartDate, 'HH24:MI') || 'PM'
+    END AS time
 FROM
     sections
+ORDER BY
+    time ASC
 ;
--- TBD
+-- This one is done
 
 -- 10
 SELECT
