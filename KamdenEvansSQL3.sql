@@ -155,8 +155,14 @@ ORDER BY
 
 -- 10
 SELECT
-    registrationDate AS enroll_time
+    TO_CHAR(registrationDate, 'HH:MI') || ' PM' AS enroll_time,
+    studentID AS student_id,
+    sectionID AS section
 FROM
     registration
+WHERE
+    TO_CHAR(registrationDate, 'HH24:MI') LIKE '%13:35%'
+ORDER BY
+    student_id DESC
 ;
--- TBD
+-- This one is done
