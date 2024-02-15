@@ -117,8 +117,14 @@ SELECT
     firstName || ' ' || lastName AS student_name
 FROM
     students
+WHERE
+    (TO_CHAR(admissionDate, 'DD') LIKE '%13%'
+    OR TO_CHAR(admissionDate, 'DD') LIKE '%29%')
+    AND TO_CHAR(admissionDate, 'YYYY') LIKE '%2022%'
+ORDER BY
+    lastName ASC
 ;
--- TBD
+-- This one is done
 
 -- 8
 SELECT
