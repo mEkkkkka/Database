@@ -128,9 +128,15 @@ ORDER BY
 
 -- 8
 SELECT
-    firstName AS first
+    firstName AS first,
+    lastName AS last,
+    ROUND(MONTHS_BETWEEN(SYSDATE, hireDate), 2) AS employed
 FROM
     professors
+WHERE
+    phone LIKE '701%'
+ORDER BY
+    employed DESC
 ;
 -- TBD; dates will not match in all likelihood
 
