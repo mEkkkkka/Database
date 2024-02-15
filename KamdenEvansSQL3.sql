@@ -95,11 +95,22 @@ FROM
 
 -- 6
 SELECT
+    courseID AS course_id,
+    sectionID AS section_id,
+    sectionStartDate AS section_st,
     capacity AS capacity
 FROM
     sections
+WHERE
+    TO_CHAR(SectionStartDate, 'YYYY') LIKE '%2019%'
+    AND TO_CHAR(SectionStartDate, 'HH:MI') LIKE '%07:30%'
+    AND (TO_CHAR(SectionStartDate, 'Month') LIKE '%May%'
+    OR TO_CHAR(SectionStartDate, 'Month') LIKE '%June%'
+    OR TO_CHAR(SectionStartDate, 'Month') LIKE '%July%')
+ORDER BY
+    capacity ASC, section_id ASC, course_id ASC, section_st ASC
 ;
--- TBD
+-- This one is done
 
 -- 7
 SELECT
