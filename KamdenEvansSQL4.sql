@@ -104,8 +104,16 @@ SELECT
     MIN(score) AS lowest_quiz_score
 FROM
     assignmentScore
+WHERE
+    assignmentTypeID = 'QZ'
+GROUP BY
+    sectionID
+HAVING
+    MIN(score) >= 80 AND COUNT(*) < 5
+ORDER BY
+    lowest_quiz_score ASC
 ;
--- TBD
+-- Mostly done, need to figure out how to fix some of the ordering
 
 -- 9
 SELECT
@@ -113,8 +121,27 @@ SELECT
     COUNT(*) AS student_count
 FROM
     students
+WHERE
+    UPPER(SUBSTR(city, 1, 1)) = 'A'
+    OR UPPER(SUBSTR(city, 1, 1)) = 'B'
+    OR UPPER(SUBSTR(city, 1, 1)) = 'C'
+    OR UPPER(SUBSTR(city, 1, 1)) = 'D'
+    OR UPPER(SUBSTR(city, 1, 1)) = 'E'
+    OR UPPER(SUBSTR(city, 1, 1)) = 'F'
+    OR UPPER(SUBSTR(city, 1, 1)) = 'G'
+    OR UPPER(SUBSTR(city, 1, 1)) = 'H'
+    OR UPPER(SUBSTR(city, 1, 1)) = 'I'
+    OR UPPER(SUBSTR(city, 1, 1)) = 'J'
+    OR UPPER(SUBSTR(city, 1, 1)) = 'K'
+    OR UPPER(SUBSTR(city, 1, 1)) = 'L'
+GROUP BY
+    city
+HAVING
+    COUNT(*) > 19 AND COUNT(*) < 101
+ORDER BY
+    student_count ASC
 ;
--- TBD
+-- Mostly done, need to figure out how to fix som of the ordering
 
 -- 10
 SELECT
@@ -123,5 +150,13 @@ SELECT
     MIN(score) AS lowest_score
 FROM
     assignmentScore
+WHERE
+    assignmentTypeID = 'PA'
+GROUP BY
+    sectionID
+HAVING
+    COUNT(*) > 35
+ORDER BY
+    participation
 ;
--- TBD
+-- This one is done
