@@ -24,13 +24,15 @@ WHERE
 
 -- 3
 SELECT
-    AVG(score) AS average,
+    ROUND(AVG(score), 2) AS average,
     MAX(score) AS highest,
     MIN(score) AS lowest
 FROM
     assignmentScore
+WHERE
+    sectionID = 23735 AND assignmentTypeID = 'FI'
 ;
--- TBD
+-- This one is done
 
 -- 4
 SELECT
