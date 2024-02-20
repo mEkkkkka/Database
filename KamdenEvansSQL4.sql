@@ -56,8 +56,16 @@ SELECT
     COUNT(*) AS wednesday_reg
 FROM
     registration
+WHERE
+    TO_CHAR(registrationDate, 'DAY') = 'WEDNESDAY'
+GROUP BY
+    sectionID
+HAVING
+    COUNT(*) > 3
+ORDER BY
+    wednesday_reg DESC
 ;
--- TBD
+-- This one is done
 
 -- 6
 SELECT
