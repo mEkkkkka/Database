@@ -113,7 +113,7 @@ HAVING
 ORDER BY
     lowest_quiz_score ASC
 ;
--- Mostly done, need to figure out how to fix some of the ordering
+-- This one is done
 
 -- 9
 SELECT
@@ -141,7 +141,7 @@ HAVING
 ORDER BY
     student_count ASC
 ;
--- Mostly done, need to figure out how to fix som of the ordering
+-- This one is done
 
 -- 10
 SELECT
