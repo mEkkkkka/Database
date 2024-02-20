@@ -86,11 +86,17 @@ ORDER BY
 -- 7
 SELECT
     studentID AS student_id,
-    COUNT(*)
+    COUNT(*) AS section_count
 FROM
     registration
+WHERE
+    studentID = 2735 OR studentID = 1398 OR studentID = 2847 OR studentID = 2959 OR studentID = 3200
+GROUP BY
+    studentID
+ORDER BY
+    section_count DESC
 ;
--- TBD
+-- This one is done
 
 -- 8
 SELECT
