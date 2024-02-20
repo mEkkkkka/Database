@@ -16,11 +16,11 @@ WHERE
 SELECT
     COUNT(*) AS admissions_2015
 FROM
-    registration
-GROUP BY
-    TO_CHAR(registrationDate, 'YYYY') LIKE '2015'
+    students
+WHERE
+    TO_CHAR(admissionDate, 'YYYY') = '2015'
 ;
--- TBD
+-- This one is done
 
 -- 3
 SELECT
