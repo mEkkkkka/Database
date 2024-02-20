@@ -71,11 +71,17 @@ ORDER BY
 SELECT
     studentID AS student_id,
     sectionID AS section_id,
-    AVG(finalClassGrade) AS average_grade
+    TO_CHAR(ROUND(AVG(score), 4), '99.9999') AS average_grade
 FROM
-    registration
+    assignmentScore
+WHERE
+    sectionID = 30775
+GROUP BY
+    studentID, sectionID
+ORDER BY
+    average_grade DESC
 ;
--- TBD
+-- This one is done
 
 -- 7
 SELECT
