@@ -41,8 +41,14 @@ SELECT
     COUNT(*) AS students
 FROM
     students
+GROUP BY
+    city, state
+HAVING
+    COUNT(*) < 5 OR COUNT(*) > 50
+ORDER BY
+    students DESC
 ;
--- TBD
+-- This one is done
 
 -- 5
 SELECT
