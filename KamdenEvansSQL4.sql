@@ -4,11 +4,13 @@
 
 -- 1
 SELECT
-    AVG(tuitionBalance) AS average_cost
+    ROUND(AVG(tuitionBalance), 2) AS average_cost
 FROM
     students
+WHERE
+    state = 'CA' OR state = 'CO' OR state = 'UT' OR state = 'OR'
 ;
--- TBD
+-- This one is done
 
 -- 2
 SELECT
