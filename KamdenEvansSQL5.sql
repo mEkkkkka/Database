@@ -100,13 +100,25 @@ ORDER BY
 
 -- 5
 SELECT
-    stu.firstName || ' ' || stu.lastName AS student_name
+    stu.firstName || ' ' || stu.lastName AS student_name,
+    reg.sectionID AS section_id
 FROM
     students stu
 JOIN
     registration reg
 ON
     stu.studentID = reg.studentID
+JOIN
+    assignmentScore scr
+ON
+    stu.studentID = scr.studentID
+    AND reg.sectionID = scr.sectionID
+WHERE
+    reg.finalClassGrade LIKE '%B-%'
+GROUP BY
+    stu.firstName, stu.lastName, reg.sectionID
+HAVING
+    COUNT(*) = 17
 ;
 -- TBD
 
