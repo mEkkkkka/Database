@@ -44,15 +44,22 @@ GROUP BY
 
 -- 3
 SELECT
-    cou.subjectCode || ' ' || cou.courseNumber AS class, COUNT(*) AS count
+    cou.subjectCode || ' ' || cou.courseNumber AS class,
+    COUNT(*) AS count
 FROM
     courses cou
 JOIN
     sections sec
 ON
     cou.courseID = sec.courseID
+WHERE
+    sec.professorID = 10051
+GROUP BY
+    cou.subjectCode, cou.courseNumber
+ORDER BY
+    cou.courseNumber ASC
 ;
--- TBD
+-- This one is done
 
 -- 4
 SELECT
