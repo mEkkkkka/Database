@@ -53,7 +53,7 @@ JOIN
 ON
     cou.courseID = sec.courseID
 WHERE
-    sec.professorID = 10051
+    sec.professorID = 10051 -- 10051 is the professor ID of Anabell Freedman
 GROUP BY
     cou.subjectCode, cou.courseNumber
 ORDER BY
@@ -63,15 +63,40 @@ ORDER BY
 
 -- 4
 SELECT
-    code.assignmentTypeID || ' ' || code.description AS code_description
+    code.assignmentTypeID || ' ' || code.description AS code_description,
+    AVG(score) AS average_grade,
+    COUNT(*) AS count
 FROM
     assignmentCode code
 JOIN
     assignmentScore scr
 ON
     code.assignmentTypeID = scr.assignmentTypeID
+WHERE
+    scr.sectionID = 21495 -- the numbers listed are all 18 section IDs for the CS 2550 course
+    OR scr.sectionID = 21496
+    OR scr.sectionID = 21655
+    OR scr.sectionID = 22547
+    OR scr.sectionID = 11402
+    OR scr.sectionID = 11404
+    OR scr.sectionID = 23703
+    OR scr.sectionID = 23723
+    OR scr.sectionID = 31897
+    OR scr.sectionID = 33300
+    OR scr.sectionID = 34306
+    OR scr.sectionID = 30766
+    OR scr.sectionID = 30767
+    OR scr.sectionID = 31752
+    OR scr.sectionID = 34993
+    OR scr.sectionID = 10699
+    OR scr.sectionID = 11423
+    OR scr.sectionID = 11427
+GROUP BY
+    code.assignmentTypeID, code.description
+ORDER BY
+    code_description ASC
 ;
--- TBD
+-- This one is done
 
 -- 5
 SELECT
