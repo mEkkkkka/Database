@@ -15,13 +15,13 @@ JOIN
 ON
     stu.studentID = reg.studentID
 WHERE
-    TO_CHAR(reg.registrationDate, 'Month DD') LIKE 'November 18'
+    TO_CHAR(reg.registrationDate, 'Month DD') LIKE '%November%18%'
 ORDER BY
     amount_owed DESC,
     first_name DESC,
     last_name DESC
 ;
--- Check this one
+-- This one is done
 
 -- 2
 SELECT
