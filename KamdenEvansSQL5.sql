@@ -4,15 +4,24 @@
 
 -- 1
 SELECT
-    stu.firstName AS first_name
+    stu.firstName AS first_name,
+    stu.lastName AS last_name,
+    stu.tuitionBalance AS amount_owed,
+    reg.finalClassGrade AS final_grade
 FROM
     students stu
 JOIN
     registration reg
 ON
     stu.studentID = reg.studentID
+WHERE
+    TO_CHAR(reg.registrationDate, 'Month DD') LIKE 'November 18'
+ORDER BY
+    amount_owed DESC,
+    first_name DESC,
+    last_name DESC
 ;
--- TBD
+-- Check this one
 
 -- 2
 SELECT
