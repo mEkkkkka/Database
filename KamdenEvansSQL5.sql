@@ -4,80 +4,128 @@
 
 -- 1
 SELECT
-
+    stu.firstName AS first_name
 FROM
-
+    students stu
+JOIN
+    registration reg
+ON
+    stu.studentID = reg.studentID
 ;
 -- TBD
 
 -- 2
 SELECT
-
+    cou.courseTitle AS class
 FROM
-
+    courses cou
+JOIN
+    sections sec
+ON
+    cou.courseID = sec.courseID
 ;
 -- TBD
 
 -- 3
 SELECT
-
+    cou.subjectCode || ' ' || cou.courseNumber AS class, COUNT(*) AS count
 FROM
-
+    courses cou
+JOIN
+    sections sec
+ON
+    cou.courseID = sec.courseID
 ;
 -- TBD
 
 -- 4
 SELECT
-
+    code.assignmentTypeID || ' ' || code.description AS code_description
 FROM
-
+    assignmentCode code
+JOIN
+    assignmentScore scr
+ON
+    code.assignmentTypeID = scr.assignmentTypeID
 ;
 -- TBD
 
 -- 5
 SELECT
-
+    stu.firstName || ' ' || stu.lastName AS student_name
 FROM
-
+    students stu
+JOIN
+    registration reg
+ON
+    stu.studentID = reg.studentID
 ;
 -- TBD
 
 -- 6
 SELECT
-
+    stu.firstName || ' ' || stu.lastName AS student_name
 FROM
-
+    students stu
+JOIN
+    assignmentScore scr
+ON
+    stu.studentID = scr.studentID
 ;
 -- TBD
 
 -- 7
 SELECT
-
+    bld.buildingName AS building_name
 FROM
-
+    buildings bld
+JOIN
+    location loc
+ON
+    bld.building = loc.building
 ;
 -- TBD
 
 -- 8
 SELECT
-
+    stu.firstName || ' ' || stu.lastName AS student_name
 FROM
-
+    students stu
+JOIN
+    registration reg
+ON
+    stu.studentID = reg.studentID
 ;
 -- TBD
 
 -- 9
 SELECT
-
+    cou.subjectCode || ' ' || cou.courseNumber AS course
 FROM
-
+    sections sec
+JOIN
+    assignmentScore scr
+ON
+    sec.sectionID = scr.sectionID
+JOIN
+    courses cou
+ON
+    sec.courseID = cou.courseID
 ;
 -- TBD
 
 -- 10
 SELECT
-
+    sec.sectionID AS section_id
 FROM
-
+    sections sec
+JOIN
+    professors prof
+ON
+    sec.professorID = prof.professorID
+JOIN
+    assignmentScore scr
+ON
+    scr.sectionID = sec.sectionID
 ;
 -- TBD
