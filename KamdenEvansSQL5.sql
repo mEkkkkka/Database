@@ -125,9 +125,9 @@ HAVING
 -- 6
 SELECT
     stu.firstName || ' ' || stu.lastName AS full_name,
-    cou..subjectCode || ' ' || cou.courseNumber AS course,
+    cou.subjectCode || ' ' || cou.courseNumber AS course,
     scr.assignmentTypeID AS type,
-    scr.score AS score,
+    scr.assignmentScore AS score,
     COUNT(*) AS homework_count
 FROM
     students stu
@@ -143,6 +143,21 @@ JOIN
     courses cou
 ON
     sec.sectionID = cou.sectionID
+WHERE
+    stu.lastName LIKE '%Brancaccio%'
+    OR stu.lastName LIKE '%Krassow%'
+    OR stu.lastName LIKE '%Dalley%'
+GROUP BY
+    stu.firstName, 
+    stu.lastName, 
+    cou.subjectCode, 
+    cou.courseNumber, 
+    scr.assignmentTypeID, 
+    scr.assignmentScore
+HAVING
+    COUNT(*) > 2
+ORDER BY
+    full_name ASC
 ;
 -- TBD
 
