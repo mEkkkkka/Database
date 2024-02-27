@@ -135,6 +135,14 @@ JOIN
     assignmentScore scr
 ON
     stu.studentID = scr.studentID
+JOIN
+    sections sec
+ON
+    stu.sectionID = sec.sectionID
+JOIN
+    courses cou
+ON
+    sec.sectionID = cou.sectionID
 ;
 -- TBD
 
