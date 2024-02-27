@@ -124,7 +124,11 @@ HAVING
 
 -- 6
 SELECT
-    stu.firstName || ' ' || stu.lastName AS student_name
+    stu.firstName || ' ' || stu.lastName AS full_name,
+    cou..subjectCode || ' ' || cou.courseNumber AS course,
+    scr.assignmentTypeID AS type,
+    scr.score AS score,
+    COUNT(*) AS homework_count
 FROM
     students stu
 JOIN
