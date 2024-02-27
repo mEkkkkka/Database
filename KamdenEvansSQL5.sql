@@ -120,7 +120,7 @@ GROUP BY
 HAVING
     COUNT(*) = 17
 ;
--- TBD
+-- Check this one
 
 -- 6
 SELECT
@@ -159,29 +159,40 @@ HAVING
 ORDER BY
     full_name ASC
 ;
--- TBD
+-- Check this one
 
 -- 7
 SELECT
     bld.buildingName AS building_name
+    COUNT(*) AS room_count
 FROM
     buildings bld
 JOIN
     location loc
 ON
     bld.building = loc.building
+GROUP BY
+    bld.buildingName
+HAVING
+    COUNT(*) > 10
 ;
--- TBD
+-- Check this one
 
 -- 8
 SELECT
-    stu.firstName || ' ' || stu.lastName AS student_name
+    stu.firstName || ' ' || stu.lastName AS student_name,
+    stu.phone AS phone
 FROM
     students stu
 JOIN
     registration reg
 ON
     stu.studentID = reg.studentID
+WHERE
+    TO_CHAR(reg.registrationDate, 'HH24:MM YYYY Month') < '09:00 2020 January'
+ORDER BY
+    lastName ASC,
+    firstName ASC
 ;
 -- TBD
 
