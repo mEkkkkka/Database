@@ -221,7 +221,8 @@ HAVING
 
 -- 10
 SELECT
-    sec.sectionID AS section_id
+    sec.sectionID AS section_id,
+    AVG(scr.assignmentScore) AS average
 FROM
     sections sec
 JOIN
@@ -232,5 +233,12 @@ JOIN
     assignmentScore scr
 ON
     scr.sectionID = sec.sectionID
+WHERE
+    sec.capacity > 14
+    AND prof.firstName LIKE '%Co%'
+GROUP BY
+    sec.sectionID
+ORDER BY
+    sec.sectionID DESC
 ;
--- TBD
+-- Check this one
