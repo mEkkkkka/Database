@@ -194,11 +194,12 @@ ORDER BY
     lastName ASC,
     firstName ASC
 ;
--- TBD
+-- Check this one
 
 -- 9
 SELECT
-    cou.subjectCode || ' ' || cou.courseNumber AS course
+    cou.subjectCode || ' ' || cou.courseNumber AS course,
+    COUNT(*) AS max_group
 FROM
     sections sec
 JOIN
@@ -209,8 +210,14 @@ JOIN
     courses cou
 ON
     sec.courseID = cou.courseID
+WHERE
+    cou.subjectCode LIKE '%WEB%'
+GROUP BY
+    cou.subjectCode, cou.courseNumber
+HAVING
+    COUNT(*) > 1
 ;
--- TBD
+-- Check this one
 
 -- 10
 SELECT
