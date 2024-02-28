@@ -190,7 +190,7 @@ HAVING
 -- This one is done
 
 -- 8
-SELECT
+SELECT DISTINCT
     stu.firstName || ' ' || stu.lastName AS student_name,
     stu.phone AS phone
 FROM
@@ -200,12 +200,12 @@ JOIN
 ON
     stu.studentID = reg.studentID
 WHERE
-    TO_CHAR(reg.registrationDate, 'HH24:MM YYYY Month') < '09:00 2020 January'
+    TO_CHAR(reg.registrationDate, 'Month YYYY') LIKE '%January%2020%'
+    AND TO_CHAR(reg.registrationDate, 'HH24:MM') < '09:00'
 ORDER BY
-    lastName ASC,
-    firstName ASC
+    student_name ASC
 ;
--- Check this one
+-- This one is done
 
 -- 9
 SELECT
