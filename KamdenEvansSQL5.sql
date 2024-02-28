@@ -174,7 +174,7 @@ ORDER BY
 
 -- 7
 SELECT
-    bld.buildingName AS building_name
+    bld.buildingName AS building_name,
     COUNT(*) AS room_count
 FROM
     buildings bld
@@ -187,7 +187,7 @@ GROUP BY
 HAVING
     COUNT(*) > 10
 ;
--- Check this one
+-- This one is done
 
 -- 8
 SELECT
