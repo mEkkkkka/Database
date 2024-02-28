@@ -120,7 +120,7 @@ GROUP BY
 HAVING
     COUNT(*) = 17
 ;
--- Check this one
+-- This one is done
 
 -- 6
 SELECT
