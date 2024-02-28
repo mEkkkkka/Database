@@ -25,29 +25,29 @@ ORDER BY
 
 -- 2
 SELECT
-    cou.subjectCode || ' ' || cou.courseNumber AS class,
-    RPAD(SUBSTR(cou.courseDescription, 1, 33), 40, '*') AS course_details,
+    course.subjectCode || ' ' || course.courseNumber AS class,
+    RPAD(SUBSTR(course.courseDescription, 1, 33), 40, '*') AS course_details,
     COUNT(*) AS sections_per_course
 FROM
-    courses cou
+    courses course
 JOIN
     sections sec
 ON
-    cou.courseID = sec.courseID
+    course.courseID = sec.courseID
 WHERE  
-    cou.courseNumber BETWEEN '3000' AND '3999'
-    AND cou.subjectCode LIKE '%CS%'
+    course.courseNumber BETWEEN '3000' AND '3999'
+    AND course.subjectCode LIKE '%CS%'
 GROUP BY
-    cou.courseNumber, cou.subjectCode, cou.courseDescription
+    course.courseNumber, course.subjectCode, course.courseDescription
 ;
 -- This one is done
 
 -- 3
 SELECT
-    cou.subjectCode || ' ' || cou.courseNumber AS class,
+    course.subjectCode || ' ' || course.courseNumber AS class,
     COUNT(*) AS count
 FROM
-    courses cou
+    courses course
 JOIN
     sections sec
 ON
@@ -55,9 +55,9 @@ ON
 WHERE
     sec.professorID = 10051 -- 10051 is the professor ID of Anabell Freedman
 GROUP BY
-    cou.subjectCode, cou.courseNumber
+    course.subjectCode, course.courseNumber
 ORDER BY
-    cou.courseNumber ASC
+    course.courseNumber ASC
 ;
 -- This one is done
 
@@ -125,7 +125,7 @@ HAVING
 -- 6
 SELECT
     stu.firstName || ' ' || stu.lastName AS full_name,
-    cou.subjectCode || ' ' || cou.courseNumber AS course,
+    course.subjectCode || ' ' || course.courseNumber AS course,
     scr.assignmentTypeID AS type,
     scr.assignmentScore AS score,
     COUNT(*) AS homework_count
@@ -140,9 +140,9 @@ JOIN
 ON
     stu.sectionID = sec.sectionID
 JOIN
-    courses cou
+    courses course
 ON
-    sec.sectionID = cou.sectionID
+    sec.sectionID = course.sectionID
 WHERE
     stu.lastName LIKE '%Brancaccio%'
     OR stu.lastName LIKE '%Krassow%'
@@ -150,8 +150,8 @@ WHERE
 GROUP BY
     stu.firstName, 
     stu.lastName, 
-    cou.subjectCode, 
-    cou.courseNumber, 
+    course.subjectCode, 
+    course.courseNumber, 
     scr.assignmentTypeID, 
     scr.assignmentScore
 HAVING
@@ -198,7 +198,7 @@ ORDER BY
 
 -- 9
 SELECT
-    cou.subjectCode || ' ' || cou.courseNumber AS course,
+    course.subjectCode || ' ' || course.courseNumber AS course,
     COUNT(*) AS max_group
 FROM
     sections sec
@@ -207,13 +207,13 @@ JOIN
 ON
     sec.sectionID = scr.sectionID
 JOIN
-    courses cou
+    courses course
 ON
     sec.courseID = cou.courseID
 WHERE
-    cou.subjectCode LIKE '%WEB%'
+    course.subjectCode LIKE '%WEB%'
 GROUP BY
-    cou.subjectCode, cou.courseNumber
+    course.subjectCode, course.courseNumber
 HAVING
     COUNT(*) > 1
 ;
