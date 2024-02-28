@@ -237,7 +237,7 @@ ORDER BY
 -- 10
 SELECT
     sec.sectionID AS section_id,
-    AVG(scr.assignmentScore) AS average
+    TO_CHAR(ROUND(AVG(scr.score), 3), '99.999') AS average
 FROM
     sections sec
 JOIN
@@ -251,9 +251,10 @@ ON
 WHERE
     sec.capacity > 14
     AND prof.firstName LIKE '%Co%'
+    AND scr.assignmentTypeID LIKE '%MT%'
 GROUP BY
     sec.sectionID
 ORDER BY
     sec.sectionID DESC
 ;
--- Check this one
+-- This one is done
