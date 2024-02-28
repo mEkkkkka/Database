@@ -127,39 +127,50 @@ SELECT
     stu.firstName || ' ' || stu.lastName AS full_name,
     cou.subjectCode || ' ' || cou.courseNumber AS course,
     scr.assignmentTypeID AS type,
-    scr.assignmentScore AS score,
+    scr.score AS score,
     COUNT(*) AS homework_count
 FROM
     students stu
 JOIN
-    assignmentScore scr
+    registration reg
 ON
-    stu.studentID = scr.studentID
+    stu.studentID = reg.studentID
 JOIN
     sections sec
 ON
-    stu.sectionID = sec.sectionID
+    reg.sectionID = sec.sectionID
 JOIN
     courses cou
 ON
-    sec.sectionID = cou.sectionID
+    sec.courseID = cou.courseID
+JOIN
+    assignmentScore scr
+ON
+    stu.studentID = scr.studentID
+    AND scr.sectionID = sec.sectionID
 WHERE
+    (
     stu.lastName LIKE '%Brancaccio%'
     OR stu.lastName LIKE '%Krassow%'
     OR stu.lastName LIKE '%Dalley%'
+    )
+    AND (
+    scr.assignmentTypeID LIKE '%HM%'
+    OR scr.assignmentTypeID LIKE '%QZ%'
+    )
 GROUP BY
     stu.firstName, 
     stu.lastName, 
     cou.subjectCode, 
     cou.courseNumber, 
     scr.assignmentTypeID, 
-    scr.assignmentScore
+    scr.score
 HAVING
     COUNT(*) > 2
 ORDER BY
-    full_name ASC
+    stu.lastName ASC
 ;
--- Check this one
+-- This one is done
 
 -- 7
 SELECT
