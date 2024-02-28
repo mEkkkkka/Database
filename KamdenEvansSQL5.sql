@@ -210,7 +210,7 @@ ORDER BY
 -- 9
 SELECT
     cou.subjectCode || ' ' || cou.courseNumber AS course,
-    COUNT(*) AS max_group
+    MAX(assignmentNumber) AS max_group
 FROM
     sections sec
 JOIN
@@ -223,12 +223,16 @@ ON
     sec.courseID = cou.courseID
 WHERE
     cou.subjectCode LIKE '%WEB%'
+    AND scr.assignmentTypeID LIKE '%GP%'
 GROUP BY
     cou.subjectCode, cou.courseNumber
 HAVING
-    COUNT(*) > 1
+    MAX(assignmentNumber) > 1
+ORDER BY
+    max_group ASC,
+    course ASC
 ;
--- Check this one
+-- This one is done
 
 -- 10
 SELECT
