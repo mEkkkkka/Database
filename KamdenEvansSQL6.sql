@@ -4,19 +4,51 @@
 
 -- 1
 SELECT
-    stu.student AS student
+    stu.lastName || ', ' || SUBSTR(stu.firstName, 1, 1) AS student
 FROM
     students stu
+WHERE
+    stu.tuitionBalance < 
+    (
+        SELECT
+            AVG(stu.tuitionBalance)
+        FROM
+            students stu
+    )
+    AND
+    SUBSTR(stu.lastName, 1, 1) = 'Z'
 ;
---TBD
+-- This one is done
 
 -- 2
 SELECT
-    stu.studentID AS student_id
+    stu.studentID AS student_id,
+    stu.firstName || ' ' || stu.lastName AS student_name,
+    COUNT(*) AS num_instructors
 FROM
     students stu
+JOIN
+    registration reg
+ON
+    stu.studentID = reg.studentID
+JOIN
+    (
+        SELECT DISTINCT
+            sec.sectionID AS section_id,
+            sec.professorID AS prof_id
+        FROM
+            sections sec
+    ) scc
+ON
+    scc.section_id = reg.sectionID
+GROUP BY
+    stu.studentID, stu.firstName, stu.lastName
+HAVING
+    COUNT(*) BETWEEN 17 AND 19
+ORDER BY
+    num_instructors DESC
 ;
---TBD
+-- This one is done
 
 -- 3
 SELECT
