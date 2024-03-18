@@ -52,11 +52,22 @@ ORDER BY
 
 -- 3
 SELECT
-    SUBSTR(prof.lastName, 1, 1) AS letter
+    SUBSTR(prof.lastName, 1, 1) AS letter,
+    COUNT(*) AS initial_count
 FROM
     professors prof
+WHERE
+    prof.professorID NOT IN 
+    (
+        SELECT
+            professorID AS prof_id
+        FROM
+            sections
+    )
+GROUP BY
+    SUBSTR(prof.lastName, 1, 1)
 ;
---TBD
+-- This one is done
 
 -- 4
 SELECT
