@@ -71,7 +71,9 @@ GROUP BY
 
 -- 4
 SELECT
-    stu.studentID AS student_id
+    reg.studentID AS student_id,
+    reg.sectionID AS section_id,
+
 FROM
     students stu
 ;
@@ -83,13 +85,17 @@ SELECT
 FROM
     (
         SELECT
+            sec.courseID AS course_id,
             COUNT(*) AS section_count
         FROM
             sections sec
-        ;
+        WHERE
+            sec.semester LIKE 'FAL%'
+        GROUP BY
+            sec.courseID
     ) scc
 ;
---TBD
+-- This one is done
 
 -- 6
 SELECT
