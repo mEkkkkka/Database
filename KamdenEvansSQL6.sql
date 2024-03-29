@@ -134,11 +134,20 @@ ORDER BY
 
 -- 7
 SELECT
-    code.description AS description
+    code.description AS description,
+    TO_CHAR(COUNT(*), '99,999') AS number_of_grades
 FROM
     assignmentCode code
+JOIN
+    assignmentScore scr
+ON
+    scr.assignmentTypeID = code.assignmentTypeID
+GROUP BY
+    code.description
+ORDER BY
+    number_of_grades ASC
 ;
---TBD
+-- This one is done
 
 -- 8
 SELECT
