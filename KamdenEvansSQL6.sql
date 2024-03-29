@@ -150,20 +150,57 @@ ORDER BY
 -- This one is done
 
 -- 8
-SELECT
-    prof.firstName AS first_name
+SELECT DISTINCT
+    prof.firstName AS first_name,
+    prof.lastName AS last_name
 FROM
     professors prof
+JOIN
+    sections sec
+ON
+    sec.professorID = prof.professorID
+WHERE
+    sec.courseID IN
+    (
+        SELECT
+            cou.courseID
+        FROM
+            courses cou
+        WHERE
+            cou.subjectCode LIKE '%CS%'
+            AND cou.courseNumber IN (1400, 1410)
+    )
 ;
---TBD
+-- This one is done
 
 -- 9
 SELECT
-    stu.firstName AS first_name
+    stu.firstName AS first_name,
+    stu.lastName AS last_name,
+    scr_data.score_id AS code,
+    scr_data.score_count AS assignmentCount
 FROM
     students stu
+JOIN
+    (
+        SELECT
+            scr.assignmentTypeID AS score_id,
+            scr.studentID AS student_id,
+            COUNT(*) AS score_count
+        FROM
+            assignmentScore scr
+        WHERE
+            scr.assignmentTypeID NOT IN ('HM', 'QZ')
+        GROUP BY
+            scr.assignmentTypeID,
+            scr.studentID
+        HAVING
+            COUNT(*) > 40
+    ) scr_data
+ON
+    stu.studentID = scr_data.student_id
 ;
---TBD
+-- This one is done
 
 -- 10
 SELECT
