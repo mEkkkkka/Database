@@ -204,8 +204,17 @@ ON
 
 -- 10
 SELECT
-    stu.firstName AS first_name
+    stu.firstName AS first_name,
+    stu.lastName AS last_name
 FROM
     students stu
+WHERE
+    TO_CHAR(stu.admissionDate, 'YYYY/MM/DD') = 
+    (
+        SELECT
+            MIN(TO_CHAR(stu.admissionDate, 'YYYY/MM/DD'))
+        FROM
+            students stu
+    )
 ;
---TBD
+-- This one is done
