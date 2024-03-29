@@ -71,13 +71,29 @@ GROUP BY
 
 -- 4
 SELECT
-    reg.studentID AS student_id,
-    reg.sectionID AS section_id,
-
+    scr.studentID AS student_id,
+    scr.sectionID AS section_id,
+    scr.score AS final_grade
 FROM
-    students stu
+    assignmentScore scr
+WHERE
+    scr.assignmentTypeID LIKE '%FI%'
+    AND
+    scr.sectionID IN
+    (
+        SELECT
+            reg.sectionID
+        FROM
+            registration reg
+        GROUP BY
+            reg.sectionID
+        HAVING
+            COUNT(*) > 25
+    )
+ORDER BY
+    scr.studentID ASC
 ;
---TBD
+-- This one is done
 
 -- 5
 SELECT
