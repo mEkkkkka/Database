@@ -115,11 +115,22 @@ FROM
 
 -- 6
 SELECT
-    loc.city AS city
+    prof.city AS city,
+    prof.state AS state,
+    prof.zip AS zip,
+    COUNT(*) AS prof_count
 FROM
-    location loc
+    professors prof
+GROUP BY
+    prof.city,
+    prof.state,
+    prof.zip
+HAVING
+    COUNT(*) > 10
+ORDER BY
+    prof_count DESC
 ;
---TBD
+-- This one is done
 
 -- 7
 SELECT
