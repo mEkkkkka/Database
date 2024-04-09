@@ -4,11 +4,45 @@
 
 -- 1
 SELECT
-    prof.firstName AS first_name
+    prof.firstName AS first_name,
+    prof.lastName AS last_name
 FROM
     professors prof
+WHERE
+    prof.professorID NOT IN 
+    (
+        SELECT
+            sec.professorID AS prof_id
+        FROM
+            sections sec
+        JOIN
+            courses cou
+        ON
+            sec.courseID = cou.courseID
+        JOIN
+            assignmentScore scr
+        ON
+            sec.sectionID = scr.sectionID
+        WHERE
+            scr.assignmentTypeID LIKE '%GP%'
+    )
+    AND prof.professorID IN
+    (
+        SELECT
+            sec.professorID AS prof_id
+        FROM 
+            sections sec
+        JOIN
+            courses cou
+        ON
+            sec.courseID = cou.courseID
+        WHERE
+            cou.subjectCode LIKE '%CS%'
+    )
+ORDER BY
+    last_name ASC
 ;
--- TBD
+-- This one is done
 
 -- 2
 SELECT
