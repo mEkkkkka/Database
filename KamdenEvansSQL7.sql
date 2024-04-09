@@ -140,19 +140,69 @@ ORDER BY
 
 -- 4
 SELECT
-    cou.subjectCode AS subject
+    cou.subjectCode AS subject,
+    cou.courseNumber AS course_number
 FROM
     courses cou
+WHERE
+    NOT EXISTS
+    (
+        SELECT
+            'X'
+        FROM
+            sections sec
+        WHERE
+            sec.courseID = cou.courseID
+    )
+    AND
+    (
+        cou.subjectCode = 'CS'
+        OR cou.subjectCode = 'WEB'
+    )
 ;
--- TBD
+-- This one is done
 
 -- 5
-SELECT
-    stu.studentID AS student_id
+WITH times_per_course AS
+(
+    SELECT
+        COUNT(*) AS amount,
+        sec.courseID AS id,
+        reg.studentID AS student_id
+    FROM
+        registration reg
+    JOIN
+        sections sec
+    ON
+        reg.sectionID = sec.sectionID
+    GROUP BY
+        sec.courseID, reg.studentID
+)
+SELECT DISTINCT
+    stu.studentID AS student_id,
+    stu.firstName AS first_name,
+    stu.lastName AS last_name
 FROM
     students stu
+JOIN
+    registration reg
+ON
+    stu.studentID = reg.studentID
+JOIN
+    sections sec
+ON
+    reg.sectionID = sec.sectionID
+JOIN
+    times_per_course tpc
+ON
+    sec.courseID = tpc.id
+WHERE
+    tpc.amount > 3
+ORDER BY
+    last_name ASC,
+    first_name ASC
 ;
--- TBD
+-- This one is done
 
 -- 6
 SELECT
