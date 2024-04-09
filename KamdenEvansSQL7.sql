@@ -46,11 +46,68 @@ ORDER BY
 
 -- 2
 SELECT
-    sec.sectionID AS section_id
+    sec.sectionID AS section_id,
+    COUNT(*) AS num_under_avg
 FROM
     sections sec
+JOIN
+    registration reg
+ON 
+    sec.sectionID = reg.sectionID
+JOIN
+    assignmentScore scr
+ON
+    reg.sectionID = scr.sectionID
+    AND reg.studentID = scr.studentID
+JOIN
+    courses cou
+ON
+    sec.courseID = cou.courseID
+WHERE
+    sec.sectionID IN
+    (
+        SELECT
+            sec.sectionID
+        FROM
+            sections sec
+        JOIN
+            courses cou
+        ON
+            sec.courseID = cou.courseID
+        WHERE
+            cou.subjectCode = 'CS'
+            AND cou.courseNumber = 2550
+    )
+    AND
+    scr.score < 
+    (
+        SELECT
+            AVG(scr.score)
+        FROM
+            sections sec
+        JOIN
+            registration reg
+        ON
+            sec.sectionID = reg.sectionID
+        JOIN
+            assignmentScore scr
+        ON
+            reg.sectionID = scr.sectionID
+            AND reg.studentID = scr.studentID
+        JOIN
+            courses cou
+        ON
+            sec.courseID = cou.courseID
+        WHERE
+            cou.subjectCode = 'CS'
+            AND cou.courseNumber = 2550
+            AND scr.assignmentTypeID = 'FI'
+    )
+    AND scr.assignmentTypeID = 'FI'
+GROUP BY
+    sec.sectionID
 ;
--- TBD
+-- This one is done
 
 -- 3
 SELECT
