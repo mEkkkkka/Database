@@ -110,12 +110,33 @@ GROUP BY
 -- This one is done
 
 -- 3
-SELECT
-    cou.subjectCode || ' ' || cou.courseNumber AS course
+SELECT DISTINCT
+    cou.subjectCode || ' ' || cou.courseNumber AS course,
+    SUM(capacity) AS total_capacity
 FROM
     courses cou
+JOIN
+    sections sec
+ON
+    cou.courseID = sec.courseID
+WHERE
+    cou.courseNumber BETWEEN '3000' AND '3999'
+    AND cou.subjectCode = 'CS'
+    AND EXISTS
+    (
+        SELECT
+            'X'
+        FROM
+            registration reg
+        WHERE
+            reg.sectionID = sec.sectionID
+    )
+GROUP BY
+    cou.subjectCode, cou.courseNumber
+ORDER BY
+    course ASC
 ;
--- TBD
+-- This one is done
 
 -- 4
 SELECT
