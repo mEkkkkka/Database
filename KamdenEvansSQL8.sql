@@ -57,10 +57,27 @@ FROM
 -- This one is done
 
 -- 3
-SELECT
-    cou.subjectCode
+SELECT DISTINCT
+    cou.courseID AS course_id,
+    cou.subjectCode || ' ' || cou.courseNumber AS details,
+    sec.capacity AS total_capacity
 FROM
     courses cou
+JOIN
+    sections sec
+ON
+    cou.courseID = sec.courseID
+WHERE
+    sec.capacity = 
+    (
+        SELECT
+            MIN(sec.capacity) AS min_capacity
+        FROM
+            sections sec
+    )
+ORDER BY
+    details ASC,
+    total_capacity ASC
 ;
 --TBD
 
