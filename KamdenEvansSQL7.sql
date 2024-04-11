@@ -205,18 +205,96 @@ ORDER BY
 -- This one is done
 
 -- 6
+-- 6
+WITH classes_per_junior AS
+(
+    SELECT
+        COUNT(*) AS classes,
+        reg.studentID AS id
+    FROM
+        registration reg
+    JOIN
+        sections sec
+    ON
+        reg.sectionID = sec.sectionID
+    JOIN
+        courses cou
+    ON
+        sec.courseID = cou.courseID
+    WHERE
+        cou.courseNumber BETWEEN '3000' AND '3999'
+    GROUP BY
+        reg.studentID
+)
+
 SELECT
-    stu.firstName AS first_name
+    stu.firstName AS first_name,
+    stu.lastName AS last_name
 FROM
     students stu
+JOIN
+    classes_per_junior cpj
+ON
+    stu.studentID = cpj.id
+WHERE
+    cpj.classes =
+    (
+        SELECT
+            FLOOR(AVG(cpj.classes)) AS average
+        FROM
+            classes_per_junior cpj
+    )
+ORDER BY
+    last_name ASC
 ;
--- TBD
+-- This one is done
 
 -- 7
+WITH students_per_course AS
+(
+    SELECT
+        COUNT(*) AS students,
+        sec.courseID AS id
+    FROM
+        registration reg
+    JOIN
+        section sec
+    ON
+        reg.sectionID = sec.sectionID
+    JOIN
+        courses cou
+    ON
+        sec.courseID = cou.courseID
+    WHERE
+        cou.subjectCode = 'CS'
+    GROUP BY
+        sec.courseID
+)
 SELECT
     cou.subjectCode || ' ' || cou.courseNumber AS course_info
 FROM
     courses cou
+WHERE
+    cou.courseID IN
+    (
+        SELECT
+            cou.courseID
+        FROM
+            courses cou
+        JOIN
+            students_per_course spc
+        ON
+            cou.courseID = spc.id
+        WHERE
+            spc.students > 
+            (
+                SELECT
+                    AVG(spc.students)
+                FROM
+                    students_per_course spc
+            )
+            AND cou.subjectCode = 'CS'
+    )
 ;
 -- TBD
 
