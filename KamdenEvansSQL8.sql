@@ -13,7 +13,7 @@ WHERE
     TO_CHAR(stu.admissionDate, 'DD, MM, fmMonth') = 
     (
         SELECT
-            MIN(TO_CHAR(stu.admissionDate, 'DD, MM, fmMonth')) AS earliest_day
+            TO_CHAR(MIN(stu.admissionDate), 'DD, MM, fmMonth') AS earliest_day
         FROM
             students stu
     )
@@ -30,7 +30,7 @@ WHERE
     TO_CHAR(prof.hireDate, 'DD, MM, fmMonth') = 
     (
         SELECT
-            MAX(TO_CHAR(prof.hireDate, 'DD, MM, fmMonth')) AS latest_day
+            TO_CHAR(MAX(prof.hireDate), 'DD, MM, fmMonth') AS latest_day
         FROM
             professors prof
     )
@@ -39,15 +39,22 @@ ORDER BY
     2 ASC,
     1 ASC
 ;
---TBD
+-- This one is done
 
 -- 2
 SELECT
-    stu.lastName
+    stu.lastName AS last_name
 FROM
     students stu
+
+INTERSECT
+
+SELECT
+    prof.lastName AS last_name
+FROM
+    professors prof
 ;
---TBD
+-- This one is done
 
 -- 3
 SELECT
