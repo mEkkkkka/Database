@@ -301,9 +301,47 @@ ORDER BY
 -- This one is done
 
 -- 8
-SELECT
-    stu.studentID AS student_id
+WITH section_at_time AS
+(
+    SELECT
+        cou.courseID AS id
+    FROM
+        sections sec
+    JOIN
+        courses cou
+    ON
+        sec.courseID = cou.courseID
+    WHERE
+        TO_CHAR(sec.sectionStartDate, 'HH24:MI') = '12:30'
+)
+SELECT DISTINCT
+    stu.studentID AS student_id,
+    stu.firstName AS first_name,
+    stu.lastName AS last_name
 FROM
     students stu
+JOIN
+    registration reg
+ON
+    stu.studentID = reg.studentID
+JOIN
+    sections sec
+ON
+    reg.sectionID = sec.sectionID
+JOIN
+    courses cou
+ON
+    sec.courseID = cou.courseID
+WHERE
+    stu.lastName BETWEEN 'T' AND 'Zzzzzzzzzzzzz'
+    AND cou.courseID IN
+    (
+        SELECT
+            sat.id AS id
+        FROM
+            section_at_time sat
+    )
+ORDER BY
+    last_name ASC
 ;
--- TBD
+-- This one is done
