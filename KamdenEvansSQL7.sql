@@ -258,17 +258,17 @@ WITH students_per_course AS
     FROM
         registration reg
     JOIN
-        section sec
+        sections sec
     ON
         reg.sectionID = sec.sectionID
     JOIN
         courses cou
     ON
         sec.courseID = cou.courseID
-    WHERE
-        cou.subjectCode = 'CS'
     GROUP BY
         sec.courseID
+    HAVING
+        COUNT(*) > 0
 )
 SELECT
     cou.subjectCode || ' ' || cou.courseNumber AS course_info
@@ -295,8 +295,10 @@ WHERE
             )
             AND cou.subjectCode = 'CS'
     )
+ORDER BY
+    course_info ASC
 ;
--- TBD
+-- This one is done
 
 -- 8
 SELECT
