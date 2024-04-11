@@ -57,16 +57,30 @@ FROM
 -- This one is done
 
 -- 3
+WITH max_capacities AS
+(
+    SELECT
+        SUM(sec.capacity) AS total_capacity,
+        sec.sectionID AS id
+    FROM
+        sections sec
+    GROUP BY
+        sec.sectionID
+)
 SELECT DISTINCT
     cou.courseID AS course_id,
     cou.subjectCode || ' ' || cou.courseNumber AS details,
-    sec.capacity AS total_capacity
+    max.total_capacity AS total_capacity
 FROM
     courses cou
 JOIN
     sections sec
 ON
     cou.courseID = sec.courseID
+JOIN
+    max_capacities max
+ON
+    sec.sectionID = max.id
 WHERE
     sec.capacity = 
     (
@@ -111,9 +125,52 @@ FROM
 
 -- 7
 SELECT
-    cou.subjectCode || ' ' || cou.courseNumber
+    stu.firstName AS first_name,
+    stu.lastName AS last_name,
+    cou.subjectCode || ' ' || cou.courseNumber AS description,
+    sec.sectionID AS section_id
 FROM
     courses cou
+JOIN
+    sections sec
+ON
+    cou.courseID = sec.courseID
+JOIN
+    registration reg
+ON
+    sec.sectionID = reg.sectionID
+JOIN
+    assignmentScore scr
+ON
+    reg.sectionID = scr.sectionID
+    AND reg.studentID = scr.studentID
+JOIN
+    students stu
+ON
+    reg.studentID = stu.student_id
+WHERE
+    reg.studentID IN
+    (
+        SELECT
+            scr.studentID AS id
+        FROM
+            assignmentScore scr
+        WHERE
+            scr.assignmentTypeID = 'MT'
+            AND scr.score = 
+            (
+                SELECT
+                    MIN(scr.score) AS min_score
+                FROM
+                    assignmentScore scr
+                WHERE
+                    scr.assignmentTypeID = 'MT'
+            )
+    )
+ORDER BY
+    last_name ASC,
+    first_name ASC,
+    description ASC
 ;
 --TBD
 
