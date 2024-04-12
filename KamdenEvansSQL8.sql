@@ -61,11 +61,11 @@ WITH max_capacities AS
 (
     SELECT
         SUM(sec.capacity) AS total_capacity,
-        sec.sectionID AS id
+        sec.courseID AS id
     FROM
         sections sec
     GROUP BY
-        sec.sectionID
+        sec.courseID
 )
 SELECT DISTINCT
     cou.courseID AS course_id,
@@ -80,7 +80,7 @@ ON
 JOIN
     max_capacities max
 ON
-    sec.sectionID = max.id
+    sec.courseID = max.id
 WHERE
     max.total_capacity = 
     (
@@ -93,7 +93,7 @@ ORDER BY
     details ASC,
     total_capacity ASC
 ;
---TBD
+-- This one is done
 
 -- 4
 WITH sections_per_student AS
