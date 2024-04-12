@@ -160,9 +160,21 @@ SELECT
 FROM
     students stu
 WHERE
-    stu.lastName
+    SUBSTR(stu.lastName, 1,1) IN ('Q', 'W', 'Z')
+    AND NOT EXISTS
+    (
+        SELECT
+            'X'
+        FROM
+            registration reg
+        WHERE
+            stu.studentID = reg.studentID
+    )
+ORDER BY
+    last_name ASC,
+    first_name ASC
 ;
---TBD
+-- This one is done
 
 -- 7
 SELECT
