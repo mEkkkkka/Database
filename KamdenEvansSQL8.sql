@@ -82,7 +82,7 @@ JOIN
 ON
     sec.sectionID = max.id
 WHERE
-    sec.capacity = 
+    max.total_capacity = 
     (
         SELECT
             MIN(sec.capacity) AS min_capacity
@@ -96,14 +96,40 @@ ORDER BY
 --TBD
 
 -- 4
+WITH sections_per_student AS
+(
+    SELECT
+        COUNT(*) AS classes,
+        reg.studentID AS id
+    FROM
+        registration reg
+    GROUP BY
+        reg.studentID
+)
 SELECT
-    stu.studentID,
-    stu.firstName,
-    stu.lastName
+    stu.studentID AS student_id,
+    stu.firstName AS first_name,
+    stu.lastName AS last_name,
+    spc.classes AS most_classes
 FROM
     students stu
+JOIN
+    sections_per_student spc
+ON
+    stu.studentID = spc.id
+WHERE
+    spc.classes = 
+    (
+        SELECT
+            MAX(spc.classes) AS most_classes
+        FROM
+            sections_per_student spc
+    )
+ORDER BY
+    last_name ASC,
+    first_name ASC
 ;
---TBD
+-- This one is done
 
 -- 5
 SELECT
