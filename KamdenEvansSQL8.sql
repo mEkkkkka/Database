@@ -220,8 +220,18 @@ ORDER BY
 -- This one is done
 
 -- 8
+WITH students_per_section AS
+(
+    SELECT
+        COUNT(*) AS enrolled,
+        reg.sectionID AS id
+    FROM
+        registration reg
+    GROUP BY
+        reg.sectionID
+)
 SELECT
-    
+    sps.enrolled AS enrolled,
     sec.sectionID AS section_id,
     cou.subjectCode || ' ' || cou.courseNumber AS course_info,
     sec.capacity AS capacity
@@ -230,14 +240,82 @@ FROM
 JOIN
     sections sec
 ON
-    cou.courseID = sec.sectionID
+    cou.courseID = sec.courseID
+JOIN
+    students_per_section sps
+ON
+    sec.sectionID = sps.id
+WHERE
+    sps.enrolled >= sec.capacity
+ORDER BY
+    enrolled ASC,
+    section_id ASC
 ;
---TBD
+-- This one is done
 
 -- 9
 SELECT
-    stu.firstName || ' ' || stu.lastName
+    stu.firstName || ' ' || stu.lastName AS ctec_student
 FROM
     students stu
+JOIN
+    registration reg
+ON
+    stu.studentID = reg.studentID
+JOIN
+    sections sec
+ON
+    reg.sectionID = sec.sectionID
+JOIN
+    courses cou
+ON
+    sec.courseID = cou.courseID
+WHERE
+    cou.subjectCode = 'CS'
+    AND cou.courseNumber = '1400'
+
+INTERSECT
+
+SELECT
+    stu.firstName || ' ' || stu.lastName AS ctec_student
+FROM
+    students stu
+JOIN
+    registration reg
+ON
+    stu.studentID = reg.studentID
+JOIN
+    sections sec
+ON
+    reg.sectionID = sec.sectionID
+JOIN
+    courses cou
+ON
+    sec.courseID = cou.courseID
+WHERE
+    cou.subjectCode = 'CS'
+    AND cou.courseNumber = '1410'
+
+INTERSECT
+
+SELECT
+    stu.firstName || ' ' || stu.lastName AS ctec_student
+FROM
+    students stu
+JOIN
+    registration reg
+ON
+    stu.studentID = reg.studentID
+JOIN
+    sections sec
+ON
+    reg.sectionID = sec.sectionID
+JOIN
+    courses cou
+ON
+    sec.courseID = cou.courseID
+WHERE
+    cou.subjectCode = 'CS'
+    AND cou.courseNumber = '2550'
 ;
---TBD
+-- This one is done
