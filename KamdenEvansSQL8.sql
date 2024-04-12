@@ -133,19 +133,34 @@ ORDER BY
 
 -- 5
 SELECT
-    cou.subjectCode,
-    cou.courseNumber
+    cou.subjectCode AS subject,
+    cou.courseNumber AS course
 FROM
     courses cou
+JOIN
+    sections sec
+ON
+    cou.courseID = sec.courseID
+JOIN
+    professors prof
+ON
+    sec.professorID = prof.professorID
+WHERE
+    prof.firstName = 'Annabell'
+    AND prof.lastName = 'Freedman'
+ORDER BY
+    course ASC
 ;
---TBD
+-- This one is done
 
 -- 6
 SELECT
-    stu.firstName,
-    stu.lastName
+    stu.firstName AS first_name,
+    stu.lastName AS last_name
 FROM
     students stu
+WHERE
+    stu.lastName
 ;
 --TBD
 
@@ -173,32 +188,24 @@ ON
 JOIN
     students stu
 ON
-    reg.studentID = stu.student_id
+    reg.studentID = stu.studentID
 WHERE
-    reg.studentID IN
+    scr.score = 
     (
         SELECT
-            scr.studentID AS id
+            MIN(scr.score) AS min_score
         FROM
             assignmentScore scr
         WHERE
             scr.assignmentTypeID = 'MT'
-            AND scr.score = 
-            (
-                SELECT
-                    MIN(scr.score) AS min_score
-                FROM
-                    assignmentScore scr
-                WHERE
-                    scr.assignmentTypeID = 'MT'
-            )
     )
+    AND scr.assignmentTypeID = 'MT'
 ORDER BY
     last_name ASC,
     first_name ASC,
     description ASC
 ;
---TBD
+-- This one is done
 
 -- 8
 SELECT
