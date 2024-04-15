@@ -101,8 +101,8 @@ WITH students_per_location AS
 )
 SELECT
     sec.locationID AS location_id,
-    stpl.section_count AS sections,
-    spl.student_count AS students
+    spl.section_count AS sections,
+    stpl.student_count AS students
 FROM
     sections sec
 JOIN
@@ -191,11 +191,34 @@ ORDER BY
 -- This one is done
 
 -- 8
+WITH sections_per_student AS
+(
+    SELECT
+        COUNT(*) AS classes,
+        reg.studentID AS id
+    FROM
+        registration reg
+    GROUP BY
+        reg.studentID
+)
 SELECT
     stu.studentID AS student_id,
     stu.firstName AS first_name,
-    stu.lastName AS last_name
+    stu.lastName AS last_name,
+    CASE
+        WHEN sps.classes IS NULL THEN 0
+        ELSE sps.classes
+    END AS enrollments
 FROM
     students stu
+LEFT OUTER JOIN
+    sections_per_student sps
+ON
+    stu.studentID = sps.id
+WHERE
+    SUBSTR(stu.phone, 1, 3) = '406'
+ORDER BY
+    last_name ASC,
+    first_name ASC
 ;
--- TBD
+-- This one is done
