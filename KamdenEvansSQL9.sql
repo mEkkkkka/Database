@@ -139,6 +139,8 @@ SELECT
     cou.subjectCode || ' ' || cou.courseNumber AS course_info
 FROM
     courses cou
+WHERE
+    cou.subjectCode = 'CS'
 ;
 -- TBD
 
