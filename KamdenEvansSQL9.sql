@@ -110,23 +110,28 @@ SELECT
     scr.assignmentTypeID AS assignment_type_id,
     scr.score AS score
 FROM
-    assginmentScore scr
+    assignmentScore scr
 WHERE
     scr.studentID = 1798
     AND scr.sectionID = 10813
 
-UNION
+UNION ALL
 
 SELECT
     'Average for student ' || scr.studentID || ' is ' AS assignment_type_id,
-    AVG(scr.score) AS score
+    ROUND(AVG(scr.score), 2) AS score
 FROM
     assignmentScore scr
 WHERE
     scr.studentID = 1798
     AND scr.sectionID = 10813
+GROUP BY
+    scr.studentID
+
+ORDER BY
+    assignment_type_id DESC
 ;
--- TBD
+-- This one is done
 
 -- 6
 SELECT
