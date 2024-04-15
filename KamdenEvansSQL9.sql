@@ -53,6 +53,8 @@ SELECT
     'Instructor' AS role
 FROM
     professors prof
+WHERE
+    prof.zip = 84144
 
 UNION
 
@@ -63,8 +65,15 @@ SELECT
     'Student' AS role
 FROM
     students stu
+WHERE
+    stu.zip = 84144
+    
+ORDER BY
+    role ASC,
+    last_name ASC,
+    first_name ASC
 ;
--- TBD
+-- This one is done
 
 -- 4
 SELECT
