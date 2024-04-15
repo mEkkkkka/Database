@@ -7,11 +7,11 @@ WITH sections_per_professor AS
 (
     SELECT
         COUNT(*) AS section_count,
-        prof.professorID AS id
+        sec.professorID AS id
     FROM
-        professors prof
+        sections sec
     GROUP BY
-        prof.professorID
+        sec.professorID
 )
 SELECT
     prof.professorID AS professor_id,
@@ -33,7 +33,7 @@ WHERE
             sections_per_professor spp
     )
 ;
--- TBD
+-- This one is done
 
 -- 2
 SELECT
