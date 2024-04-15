@@ -145,13 +145,35 @@ WHERE
 -- TBD
 
 -- 7
+WITH sections_per_professor AS
+(
+    SELECT
+        COUNT(*) AS section_count,
+        sec.professorID AS id
+    FROM
+        sections sec
+    GROUP BY
+        sec.professorID
+)
 SELECT
     prof.firstName AS first_name,
-    prof.lastName AS last_name
+    prof.lastName AS last_name,
+    CASE
+        WHEN loj.section_count IS NULL THEN 0
+        ELSE loj.section_count
+    END AS sections
 FROM
     professors prof
+LEFT OUTER JOIN
+    sections_per_professor loj
+ON
+    prof.professorID = loj.id
+WHERE
+    prof.lastName > 'W'
+ORDER BY
+    last_name ASC
 ;
--- TBD
+-- This one is done
 
 -- 8
 SELECT
