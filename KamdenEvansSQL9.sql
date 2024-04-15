@@ -76,12 +76,34 @@ ORDER BY
 -- This one is done
 
 -- 4
+WITH students_per_section AS
+(
+    SELECT
+        COUNT(*) AS student_count,
+        reg.sectionID AS id
+    FROM
+        registration reg
+    GROUP BY
+        reg.sectionID
+)
 SELECT
-    loc.locationID AS location_id
+    sec.locationID AS location_id,
+    COUNT(*) AS sections,
+    spc.student_count AS students
 FROM
-    locations loc
+    sections sec
+JOIN
+    students_per_section spc
+ON
+    sec.sectionID = spc.id
+WHERE
+    sec.locationID > 8999
+GROUP BY
+    sec.locationID, spc.student_count
+ORDER BY
+    location_id ASC
 ;
--- TBD
+-- Work on this one
 
 -- 5
 SELECT
