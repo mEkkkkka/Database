@@ -36,14 +36,50 @@ WHERE
 -- This one is done
 
 -- 2
-SELECT
+SELECT DISTINCT
     prof.zip AS zip,
     prof.firstName AS first_name,
     prof.lastName AS last_name
 FROM
     professors prof
+JOIN
+    sections sec
+ON
+    prof.professorID = sec.professorID
+JOIN
+    registration reg
+ON
+    sec.sectionID = reg.sectionID
+JOIN
+    students stu
+ON
+    reg.studentID = stu.studentID
+WHERE
+    prof.professorID IN
+    (
+        SELECT
+            prof.professorID AS id
+        FROM
+            students stu
+        JOIN
+            registration reg
+        ON
+            stu.studentID = reg.studentID
+        JOIN
+            sections sec
+        ON
+            reg.sectionID = sec.sectionID
+        JOIN
+            professors prof
+        ON
+            sec.professorID = prof.professorID
+        WHERE
+            stu.zip = prof.zip
+    )
+ORDER BY
+    last_name ASC
 ;
--- TBD
+-- This one is done
 
 -- 3
 SELECT
