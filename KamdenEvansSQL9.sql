@@ -188,8 +188,28 @@ FROM
     courses cou
 WHERE
     cou.subjectCode = 'CS'
+    AND 
+    (
+        SELECT
+            COUNT(DISTINCT scr.assignmentTypeID) AS numbers
+        FROM
+            registration reg 
+        JOIN
+            assignmentScore scr
+        ON
+            reg.studentID = scr.studentID
+            AND reg.sectionID = scr.sectionID
+        JOIN
+            sections sec
+        ON
+            reg.sectionID = sec.sectionID
+        WHERE
+            sec.courseID = cou.courseID
+    ) = 7
+ORDER BY
+    course_id ASC
 ;
--- TBD
+-- This one is done
 
 -- 7
 WITH sections_per_professor AS
