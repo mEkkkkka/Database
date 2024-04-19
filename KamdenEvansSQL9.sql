@@ -123,6 +123,8 @@ WITH students_per_location AS
         sections sec
     ON
         reg.sectionID = sec.sectionID
+    WHERE
+        sec.locationID > 8999
     GROUP BY
         sec.locationID
 ), sections_per_location AS
@@ -136,25 +138,19 @@ WITH students_per_location AS
         sec.locationID
 )
 SELECT
-    sec.locationID AS location_id,
+    spl.id AS location_id,
     spl.section_count AS sections,
     stpl.student_count AS students
 FROM
-    sections sec
-JOIN
     students_per_location stpl
-ON
-    sec.sectionID = stpl.id
 JOIN
     sections_per_location spl
 ON
-    sec.locationID = spl.id
-WHERE
-    sec.locationID > 8999
+    stpl.id = spl.id
 ORDER BY
     location_id ASC
 ;
--- Work on this one
+-- This one is done
 
 -- 5
 SELECT
