@@ -134,7 +134,7 @@ WHERE
 UPDATE
     assignmentScore scr
 SET
-    scr.score = scr.score + 10
+    scr.score = scr.score + (scr.score/10)
 WHERE
     scr.sectionID = 31752
     AND scr.assignmentTypeID = 'FI'
@@ -249,7 +249,7 @@ ORDER BY
 SELECT DISTINCT
     prof.firstName AS first_name,
     prof.lastName AS last_name,
-    SUBSTR(prof.phone, 1,3) || ',' || SUBSTR(prof.phone, 4,6) || '.' || SUBSTR(prof.phone, 7) AS phone
+    SUBSTR(prof.phone, 1,3) || ',' || SUBSTR(prof.phone, 4,3) || '.' || SUBSTR(prof.phone, 7) AS phone
 FROM
     professors prof
 JOIN
@@ -280,7 +280,7 @@ SELECT
     stu.studentID AS student_id,
     stu.firstName AS first_name,
     stu.lastName AS last_name,
-    TO_CAHR(avs.average, '99.99') AS average_score
+    TO_CHAR(avs.average, '99.99') AS average_score
 FROM
     students stu
 JOIN
@@ -299,32 +299,28 @@ ORDER BY
 -- Check this one
 
 
-
-
-
-WITH score_to_student AS
-(
-    SELECT
-        scr.studentID AS id,
-        ROUND(AVG(scr.score), 2) AS average_score
-    FROM
-        assignmentScore scr
-    WHERE
-        scr.sectionID = 31752
-    GROUP BY
-        scr.studentID
-)
 SELECT
     stu.studentID AS student_id,
     stu.firstName AS first_name,
     stu.lastName AS last_name,
-    TO_CHAR(sts.average_score, '99.99') AS average_score
+    TO_CHAR(ROUND(AVG(scr.score), 2), '999.99') AS average_score
 FROM
-    score_to_student sts
-JOIN
     students stu
+JOIN
+    registration reg
 ON
-    sts.id = stu.studentID
+    stu.studentID = reg.studentID
+JOIN
+    assignmentScore scr
+ON
+    reg.studentID = scr.studentID
+    AND reg.sectionID = scr.sectionID
+WHERE
+    reg.sectionID = 31752
+GROUP BY
+    stu.firstName,
+    stu.lastName,
+    stu.studentID
 ORDER BY
     student_id ASC
 ;
