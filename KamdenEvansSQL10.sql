@@ -297,3 +297,34 @@ ORDER BY
     student_id
 ;
 -- Check this one
+
+
+
+
+
+WITH score_to_student AS
+(
+    SELECT
+        scr.studentID AS id,
+        ROUND(AVG(scr.score), 2) AS average_score
+    FROM
+        assignmentScore scr
+    WHERE
+        scr.sectionID = 31752
+    GROUP BY
+        scr.studentID
+)
+SELECT
+    stu.studentID AS student_id,
+    stu.firstName AS first_name,
+    stu.lastName AS last_name,
+    TO_CHAR(sts.average_score, '99.99') AS average_score
+FROM
+    score_to_student sts
+JOIN
+    students stu
+ON
+    sts.id = stu.studentID
+ORDER BY
+    student_id ASC
+;
