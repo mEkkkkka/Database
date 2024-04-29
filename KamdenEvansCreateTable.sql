@@ -118,8 +118,29 @@ ON DELETE
 INSERT INTO albums (album_id, title, artist_id, year)
 WITH album_stuff AS
 (
-
-)
+    SELECT 74, 'The Bog / I-Q', , 12 FROM dual UNION ALL
+    SELECT 84, 'Faith (2005 Remaster Deluxe Edition)', TO_DATE('2005', 'YYYY'), 13 FROM dual UNION ALL
+    SELECT 85, 'Nightmare Revisited', TO_DATE('2008', 'YYYY'), 22 FROM dual UNION ALL
+    SELECT 89, 'When Your Heart Stops Beating (Explicit)', TO_DATE('2002', 'YYYY'), 28 FROM dual UNION ALL
+    SELECT 93, 'RIOT!', , 32 FROM dual UNION ALL
+    SELECT 176, 'Funhouse (Deluxe Version)', TO_DATE('2008', 'YYYY'), 38 FROM dual UNION ALL
+    SELECT 178, 'Ultra Dubstep', TO_DATE('2013', 'YYYY'), 119 FROM dual UNION ALL
+    SELECT 179, 'Tranceport (Paul Oakenfold)', TO_DATE('1998', 'YYYY'), 120 FROM dual UNION ALL
+    SELECT 185, 'no title', TO_DATE('1991', 'YYYY'), 126 FROM dual UNION ALL
+    SELECT 186, 'This Year''s Model', , 127 FROM dual UNION ALL
+    SELECT 191, 'American Thighs', TO_DATE('1994', 'YYYY'), 732 FROM dual UNION ALL
+    SELECT 192, 'Thirteen', TO_DATE('2001', 'YYYY'), 733 FROM dual UNION ALL
+    SELECT 198, 'Plans', , 95 FROM dual UNION ALL
+    SELECT 200, 'Stars Come Out (Dillon Francis Remix)', TO_DATE('2012', 'YYYY'), 737 FROM dual UNION ALL
+    SELECT 332, 'M!Ssundaztood', TO_DATE('2001', 'YYYY'), 38 FROM dual UNION ALL
+    SELECT 340, 'Feel Good Inc - Single', TO_DATE('2005', 'YYYY'), 46 FROM dual UNION ALL
+    SELECT 342, 'Church Of Scars', , 48 FROM dual UNION ALL
+    SELECT 343, 'The Very Best of Sheryl Crow', , 49 FROM dual UNION ALL
+    SELECT 348, 'Who Is, This Is?', TO_DATE('1990', 'YYYY'), 55 FROM dual UNION ALL
+    SELECT 435, 'Hook Me Up', TO_DATE('2007', 'YYYY'), 752 FROM dual UNION ALL
+    SELECT 443, 'Fearless', TO_DATE('2008', 'YYYY'), 97 FROM dual UNION ALL
+    SELECT 632, 'American IV - The Man Comes Around', , 65 FROM dual UNION ALL
+    SELECT 685, 'Hits! The Very Best Of Erasure', , 98 FROM dual
 SELECT
     *
 FROM
