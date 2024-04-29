@@ -10,7 +10,7 @@ CREATE TABLE albums
     artist_id NUMBER(3) NOT NULL,
     year DATE
 );
--- Check this one
+-- This one is done
 
 -- Creating table artists
 CREATE TABLE artists
@@ -18,7 +18,7 @@ CREATE TABLE artists
     artist_id NUMBER(3) PRIMARY KEY,
     name VARCHAR2(120) NOT NULL
 );
--- Check this one
+-- This one is done
 
 -- Creating table genres
 CREATE TABLE genres
@@ -26,7 +26,7 @@ CREATE TABLE genres
     genre_id NUMBER(3) PRIMARY KEY,
     name VARCHAR2(120) NOT NULL
 );
--- Check this one
+-- This one is done
 
 -- Creating table media_types
 CREATE TABLE media_types
@@ -34,7 +34,7 @@ CREATE TABLE media_types
     media_type_id NUMBER(3) PRIMARY KEY,
     name VARCHAR2(120) NOT NULL
 );
--- Check this one
+-- This one is done
 
 -- Creating table tracks
 CREATE TABLE tracks
@@ -53,7 +53,9 @@ CREATE TABLE tracks
     skip_count NUMBER(4) NOT NULL,
     track_index NUMBER(3)
 );
--- Check this one
+-- This one is done
+
+-- SAVEPOINT tables_created
 
 -- Creating foreign keys
 ALTER TABLE
@@ -82,7 +84,7 @@ ON DELETE
 ALTER TABLE
     tracks
 ADD CONSTRAINT
-    fk_artists
+    fk_tracks_to_artists
 FOREIGN KEY
     (artist_id)
 REFERENCES
@@ -112,7 +114,9 @@ REFERENCES
 ON DELETE
     CASCADE
 ;
--- Check this stuff
+-- This stuff is done
+
+-- SAVEPOINT fks_created
 
 -- Inserting data into table albums
 INSERT INTO albums (album_id, title, artist_id, year)
