@@ -10,7 +10,7 @@ CREATE TABLE albums
     artist_id NUMBER(3) NOT NULL,
     year DATE
 );
--- TBD
+-- Check this one
 
 -- Creating table artists
 CREATE TABLE artists
@@ -18,7 +18,7 @@ CREATE TABLE artists
     artist_id NUMBER(3) PRIMARY KEY,
     name VARCHAR2(120) NOT NULL
 );
--- TBD
+-- Check this one
 
 -- Creating table genres
 CREATE TABLE genres
@@ -26,7 +26,7 @@ CREATE TABLE genres
     genre_id NUMBER(3) PRIMARY KEY,
     name VARCHAR2(120) NOT NULL
 );
--- TBD
+-- Check this one
 
 -- Creating table media_types
 CREATE TABLE media_types
@@ -34,7 +34,7 @@ CREATE TABLE media_types
     media_type_id NUMBER(3) PRIMARY KEY,
     name VARCHAR2(120) NOT NULL
 );
--- TBD
+-- Check this one
 
 -- Creating table tracks
 CREATE TABLE tracks
@@ -53,7 +53,7 @@ CREATE TABLE tracks
     skip_count NUMBER(4) NOT NULL,
     track_index NUMBER(3)
 );
--- TBD
+-- Check this one
 
 -- Creating foreign keys
 ALTER TABLE
@@ -112,11 +112,41 @@ REFERENCES
 ON DELETE
     CASCADE
 ;
--- TBD
+-- Check this stuff
 
 -- Inserting data into table albums
-
--- TBD
+INSERT INTO genres (genre_id, name)
+WITH genre_stuff AS
+(
+    SELECT 1, 'Sound Effect' FROM dual UNION ALL
+    SELECT 2, 'Pop' FROM dual UNION ALL
+    SELECT 3, 'Rock' FROM dual UNION ALL
+    SELECT 4, 'Alternative' FROM dual UNION ALL
+    SELECT 5, 'Industrial' FROM dual UNION ALL
+    SELECT 6, 'Soundtrack' FROM dual UNION ALL
+    SELECT 7, 'Holiday' FROM dual UNION ALL
+    SELECT 8, 'Dance - Electronica' FROM dual UNION ALL
+    SELECT 9, 'Unknown Genre' FROM dual UNION ALL
+    SELECT 10, 'Tween' FROM dual UNION ALL
+    SELECT 11, 'Country' FROM dual UNION ALL
+    SELECT 12, 'Electronic' FROM dual UNION ALL
+    SELECT 13, 'Blues' FROM dual UNION ALL
+    SELECT 14, 'Dance' FROM dual UNION ALL
+    SELECT 15, 'Comedy' FROM dual UNION ALL
+    SELECT 16, 'Punk' FROM dual UNION ALL
+    SELECT 17, 'Classical' FROM dual UNION ALL
+    SELECT 18, 'Hard Rock' FROM dual UNION ALL
+    SELECT 19, 'Trance' FROM dual UNION ALL
+    SELECT 20, 'Hip-Hop - Rap' FROM dual UNION ALL
+    SELECT 21, 'Ska' FROM dual UNION ALL
+    SELECT 22, 'Other' FROM dual
+)
+SELECT
+    *
+FROM
+    genre_stuff
+;
+-- Check this one
 
 -- Inserting data into table artists
 
