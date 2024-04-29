@@ -118,6 +118,8 @@ ON DELETE
 
 -- SAVEPOINT fks_created
 
+-- IMPORTANT: ALL BLANK NEED NULL
+
 -- Inserting data into table albums
 INSERT INTO albums (album_id, title, artist_id, year)
 WITH album_stuff AS
@@ -145,6 +147,7 @@ WITH album_stuff AS
     SELECT 443, 'Fearless', TO_DATE('2008', 'YYYY'), 97 FROM dual UNION ALL
     SELECT 632, 'American IV - The Man Comes Around', , 65 FROM dual UNION ALL
     SELECT 685, 'Hits! The Very Best Of Erasure', , 98 FROM dual
+)
 SELECT
     *
 FROM
