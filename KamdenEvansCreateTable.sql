@@ -56,7 +56,62 @@ CREATE TABLE tracks
 -- TBD
 
 -- Creating foreign keys
+ALTER TABLE
+    albums
+ADD CONSTRAINT
+    fk_artists
+FOREIGN KEY
+    (artist_id)
+REFERENCES
+    artists (artist_id)
+ON DELETE
+    CASCADE
+;
 
+ALTER TABLE
+    tracks
+ADD CONSTRAINT
+    fk_albums
+FOREIGN KEY
+    (album_id)
+REFERENCES
+    albums (album_id)
+ON DELETE
+    CASCADE
+;
+ALTER TABLE
+    tracks
+ADD CONSTRAINT
+    fk_artists
+FOREIGN KEY
+    (artist_id)
+REFERENCES
+    artists (artist_id)
+ON DELETE
+    CASCADE
+;
+ALTER TABLE
+    tracks
+ADD CONSTRAINT
+    fk_media_types
+FOREIGN KEY
+    (media_type_id)
+REFERENCES
+    media_types (media_type_id)
+ON DELETE
+    CASCADE
+;
+ALTER TABLE
+    tracks
+ADD CONSTRAINT
+    fk_genres
+FOREIGN KEY
+    (genre_id)
+REFERENCES
+    genres (genre_id)
+ON DELETE
+    CASCADE
+;
 -- TBD
 
 -- Inserting data into table albums
