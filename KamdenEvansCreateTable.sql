@@ -115,6 +115,53 @@ ON DELETE
 -- Check this stuff
 
 -- Inserting data into table albums
+INSERT INTO albums (album_id, title, artist_id, year)
+WITH album_stuff AS
+(
+
+)
+SELECT
+    *
+FROM
+    album_stuff
+;
+-- TBD
+
+-- Inserting data into table artists
+INSERT INTO artists (artist_id, name)
+WITH artist_stuff AS
+(
+    SELECT 12, 'Bigod 20' FROM dual UNION ALL
+    SELECT 13, 'The Cure' FROM dual UNION ALL
+    SELECT 22, 'RJD2' FROM dual UNION ALL
+    SELECT 28, '(+44)' FROM dual UNION ALL
+    SELECT 32, 'Paramore' FROM dual UNION ALL
+    SELECT 38, 'P!nk' FROM dual UNION ALL
+    SELECT 46, 'Gorillaz' FROM dual UNION ALL
+    SELECT 48, 'Bishop Briggs' FROM dual UNION ALL
+    SELECT 49, 'Sheryl Crow' FROM dual UNION ALL
+    SELECT 55, 'Voodoo Glow Skulls' FROM dual UNION ALL
+    SELECT 65, 'Johnny Cash' FROM dual UNION ALL
+    SELECT 95, 'Death Cab For Cutie' FROM dual UNION ALL
+    SELECT 97, 'Taylor Swift' FROM dual UNION ALL
+    SELECT 98, 'Erasure' FROM dual UNION ALL
+    SELECT 119, 'Nero' FROM dual UNION ALL
+    SELECT 120, 'Gus Gus' FROM dual UNION ALL
+    SELECT 126, 'Henry Rollins' FROM dual UNION ALL
+    SELECT 127, 'Elvis Costello' FROM dual UNION ALL
+    SELECT 732, 'Veruca Salt' FROM dual UNION ALL
+    SELECT 733, 'Horny Toad!' FROM dual UNION ALL
+    SELECT 737, 'Zedd' FROM dual UNION ALL
+    SELECT 752, 'The Veronicas' FROM dual
+)
+SELECT
+    *
+FROM
+    artist_stuff
+;
+-- Check this one
+
+-- Inserting data into table genres
 INSERT INTO genres (genre_id, name)
 WITH genre_stuff AS
 (
@@ -148,17 +195,23 @@ FROM
 ;
 -- Check this one
 
--- Inserting data into table artists
-
--- TBD
-
--- Inserting data into table genres
-
--- TBD
-
 -- Inserting data into table media_types
-
--- TBD
+INSERT INTO media_types (media_type_id, name)
+WITH media_type_stuff AS
+(
+    SELECT 1, 'MPEG audio file' FROM dual UNION ALL
+    SELECT 2, 'Internet audio stream' FROM dual UNION ALL
+    SELECT 3, 'AAC audio file' FROM dual UNION ALL
+    SELECT 4, 'Purchased AAC audio file' FROM dual UNION ALL
+    SELECT 5, 'PDF document' FROM dual UNION ALL
+    SELECT 6, 'Protected AAC audio file' FROM
+)
+SELECT
+    *
+FROM
+    media_type_stuff
+;
+-- Check this one
 
 -- Inserting data into table tracks
 
