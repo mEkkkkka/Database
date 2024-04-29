@@ -146,7 +146,7 @@ SELECT
 FROM
     album_stuff
 ;
--- TBD
+-- Check this one
 
 -- Inserting data into table artists
 INSERT INTO artists (artist_id, name)
@@ -235,5 +235,35 @@ FROM
 -- Check this one
 
 -- Inserting data into table tracks
-
--- TBD
+INSERT INTO tracks (track_id, title, milliseconds, artist_id, album_id, genre_id, play_count, skip_count, composer, track_index, bytes, unit_price, media_type_id)
+WITH track_stuff AS
+(
+    SELECT 18, 'Hurt', 219000, 65, 632, 11, 32, 0, , 2, 3879731, 0, 1 FROM dual UNION ALL
+    SELECT 24, 'Make You Smile', 225000, 28, 89, 3, 81, 3, , , 1992294, 0.99, 4 FROM dual UNION ALL
+    SELECT 25, 'La Migra (Mas Espanol)', 174000, 55, 348, 3, 55, 0, , 12, 2936013, 0.99, 4 FROM dual UNION ALL
+    SELECT 34, 'Stars Come Out (Dillon Francis Remix)', 249000, 737, 200, 12, 5, 1, , 1, 6291456, 0, 3 FROM dual UNION ALL
+    SELECT 37, 'Christmas Eve Montage', 226000, 22, 85, 6, 15, 0, , 15, 7864320, 0, 3 FROM dual UNION ALL
+    SELECT 60, 'Please Don''t Leave Me', 232000, 38, 176, 2, 1, 2, 'P!nk &' || ' Max Martin', 5, 8703181, 0.99, 4 FROM dual UNION ALL
+    SELECT 148, 'Shiver', 202000, 733, 192, 21, 12, 1, , 1, 3460301, 0, 1 FROM dual UNION ALL
+    SELECT 171, 'Promises', 257000, 119, 178, 14, 5, 0, , 1, 8703181, 0, 1 FROM dual UNION ALL
+    SELECT 184, 'Don''t Let Me Get Me (Radio Edit)', 211000, 38, 332, 2, 0, 1, 'P!nk &' || ' Dallas Austin', 2, 8178893, 0.99, 6 FROM dual UNION ALL
+    SELECT 202, 'Running Out Of Angels (Demo)', 125000, 127, 186, 3, 69, 0, , , 1153434, 0.99, 4 FROM dual UNION ALL
+    SELECT 236, 'Tempt My Trouble', 194000, 48, 342, 4, 8, 0, , 1, 8283750, 1.99, 4 FROM dual UNION ALL
+    SELECT 289, 'White Horse', 234000, 97, 443, 11, 0, 3, , 5, 8703181, 0.99, 4 FROM dual UNION ALL
+    SELECT 301, 'The Bog (Radio Mix)', 243000, 12, 74, 5, 70, 0, , , 2097152, 0, 1 FROM dual UNION ALL
+    SELECT 344, 'Seether', 197000, 732, 191, 3, 13, 0, 'Nina Gordon', 3, 3670016, 0, 1 FROM dual UNION ALL
+    SELECT 346, 'Untouched', 255000, 752, 435, 2, 42, 0, 'Toby Gad, Jessica Origliasso &' || ' Lisa Origliasso', 1, 4508877, 0.99, 6 FROM dual UNION ALL
+    SELECT 390, '!Purple (Sasha v. The Light)', 495000, 120, 179, 19, 60, 1, , , 8283750, 0, 1 FROM dual UNION ALL
+    SELECT 391, 'Feel Good Inc (Single Edit)', 221000, 46, 340, 4, 54, 0, , 1, 3774874, 0.99, 6 FROM dual UNION ALL
+    SELECT 759, 'Charlotte Sometimes (Single)', 253000, 13, 84, 3, 63, 0, , , 2202010, 0, 1 FROM dual UNION ALL
+    SELECT 788, 'Solsbury Hill', 259000, 98, 685, 8, 66, 0, , , 2306867, 0, 1 FROM dual UNION ALL
+    SELECT 798, 'For A Pessimist, I''m Pretty Optimistic', 217000, 32, 93, 3, 68, 0, , , 1992294, 0.99, 4 FROM dual UNION ALL
+    SELECT 31611, 'Soul Meets Body', 231000, 95, 198, 3, 65, 0, , , 1992294, 0, 1 FROM dual UNION ALL
+    SELECT 43173, 'Twas the Night Before Xmas', 248000, 126, 185, 3, 1, 0, , , 4194304, 0, 1 FROM dual
+)
+SELECT
+    *
+FROM
+    track_stuff
+;
+-- Check this one
