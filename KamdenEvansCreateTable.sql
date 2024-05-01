@@ -61,7 +61,7 @@ CREATE TABLE tracks
 ALTER TABLE
     albums
 ADD CONSTRAINT
-    fk_artists
+    fk_albums_artists
 FOREIGN KEY
     (artist_id)
 REFERENCES
@@ -73,7 +73,7 @@ ON DELETE
 ALTER TABLE
     tracks
 ADD CONSTRAINT
-    fk_albums
+    fk_tracks_albums
 FOREIGN KEY
     (album_id)
 REFERENCES
@@ -84,7 +84,7 @@ ON DELETE
 ALTER TABLE
     tracks
 ADD CONSTRAINT
-    fk_tracks_to_artists
+    fk_tracks_artists
 FOREIGN KEY
     (artist_id)
 REFERENCES
@@ -95,7 +95,7 @@ ON DELETE
 ALTER TABLE
     tracks
 ADD CONSTRAINT
-    fk_media_types
+    fk_tracks_media_types
 FOREIGN KEY
     (media_type_id)
 REFERENCES
@@ -106,7 +106,7 @@ ON DELETE
 ALTER TABLE
     tracks
 ADD CONSTRAINT
-    fk_genres
+    fk_tracks_genres
 FOREIGN KEY
     (genre_id)
 REFERENCES
